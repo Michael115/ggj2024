@@ -63,7 +63,7 @@ public class Gun : MonoBehaviour
             var nextBullet = Instantiate(bullet, shootPoint.position, Quaternion.LookRotation(shootPoint.forward, shootPoint.transform.up));
             var rb = nextBullet.GetComponent<Rigidbody>();
             rb.AddForce((direction * bulletSpeed),  ForceMode.VelocityChange);
-            nextBullet.damage = damage;
+            nextBullet.Damage = damage;
 
             shootEffect.Play();
         }

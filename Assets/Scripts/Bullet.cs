@@ -5,28 +5,35 @@ using UnityEngine.VFX;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField] private VisualEffect impactEffect;
 
-    public VisualEffect impactEffect;
-    private bool _isimpactEffectNotNull;
-    
+    private bool _hasImpactEffect;
+    private int _enemyLayer;
+
     // set by gun
-    internal float damage;
+    internal float Damage;
 
-    private void Start()
+    private void Awake()
     {
-        _isimpactEffectNotNull = impactEffect != null;
+        _hasImpactEffect = impactEffect != null;
+        _enemyLayer = LayerMask.NameToLayer("Enemy");
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        // Do damage to something
+        // Only damage things on the enemy layer.
+        if (((1 << collision.gameObject.layer) & _enemyLayer) != 0)
+        {
+            print("OnCollisionEnter");
+        }
+
         HitEffect(collision.GetContact(0).point);
         Destroy(gameObject);
     }
-    
+
     private void HitEffect(Vector3 collisionPoint)
     {
-        if (_isimpactEffectNotNull)
+        if (_hasImpactEffect)
         {
             impactEffect.transform.position = collisionPoint + transform.forward * -0.1f;
             impactEffect.transform.SetParent(null);
