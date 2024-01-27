@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class SpawnManager : MonoBehaviour
     private void Start()
     {
         _spawnPoints = GameObject.FindGameObjectsWithTag("Spawn").Select(x => x.transform).ToArray();
+        Assert.IsTrue(_spawnPoints.Length > 0);
     }
 
     private void Update()
