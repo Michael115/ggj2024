@@ -13,6 +13,7 @@ public class SpawnManager : MonoBehaviour
     private void Awake()
     {
         _intervalTicks = TimeSpan.FromSeconds(intervalSeconds).Ticks;
+        _nextSpawnTicks = DateTime.UtcNow.Ticks + _intervalTicks;
     }
 
     private void Update()
@@ -30,6 +31,6 @@ public class SpawnManager : MonoBehaviour
             Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
         }
 
-        _nextSpawnTicks = DateTime.UtcNow.Ticks + _intervalTicks;
+        _nextSpawnTicks += _intervalTicks;
     }
 }
