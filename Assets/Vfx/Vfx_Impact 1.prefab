@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4136698516688486566}
   - component: {fileID: 8660345564289736719}
   m_Layer: 0
-  m_Name: Vfx_Impact
+  m_Name: Vfx_Impact 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,7 +57,16 @@ VisualEffect:
     m_Vector3f:
       m_Array: []
     m_Vector4f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 0.8168046, y: 0.17475258, z: 0.1579669, w: 0}
+        m_Name: ParticleColor
+        m_Overridden: 1
+      - m_Value: {x: 2.6390936, y: 0.46542948, z: 0.3859052, w: 0}
+        m_Name: HitColor
+        m_Overridden: 1
+      - m_Value: {x: 0.6320754, y: 0.12826468, z: 0.08646317, w: 0}
+        m_Name: FlashColor
+        m_Overridden: 1
     m_Uint:
       m_Array: []
     m_Int:
