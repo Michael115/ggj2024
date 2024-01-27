@@ -280,7 +280,6 @@ GameObject:
   - component: {fileID: 5183965746946867495}
   - component: {fileID: 6260382784135780207}
   - component: {fileID: 7527385174104245887}
-  - component: {fileID: 6667288919179737966}
   - component: {fileID: 8364696468967900858}
   - component: {fileID: 4605088030470860923}
   - component: {fileID: 4485012866628342504}
@@ -381,23 +380,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &6667288919179737966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6759722096874366887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dc4d19113d051c418c89b4f6551e6f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: 6e6f94301373312489a5dd9520593c89, type: 2}
-  camera: {fileID: 0}
-  mask:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!114 &8364696468967900858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,6 +392,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c46002c2dcf10b341989214782f13275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  seeThroughMaterials:
+  - {fileID: 2100000, guid: 0c1f62c755f85214d824f52263afaa80, type: 2}
+  - {fileID: 2100000, guid: a80a41ee68636374584f5b4e9e93b840, type: 2}
 --- !u!65 &4605088030470860923
 BoxCollider:
   m_ObjectHideFlags: 0
