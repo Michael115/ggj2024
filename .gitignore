@@ -77,3 +77,4 @@ crashlytics-build.properties
 /[Aa]ssets/[Gg]aia*User*Data/[Ss]essions.meta
 /[Aa]ssets/[Gg]aia*User*Data/[Ss]essions/*
 
+.idea/
