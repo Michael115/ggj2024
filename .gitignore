@@ -78,3 +78,6 @@ crashlytics-build.properties
 /[Aa]ssets/[Gg]aia*User*Data/[Ss]essions/*
 
 .idea/
+
+# No idea why this keeps appearing.
+Assets/PolygonPrototype/URP_ExtractMe.unitypackage.meta
