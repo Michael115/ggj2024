@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4740250781453549099}
   - component: {fileID: 2258930804472324510}
   - component: {fileID: 3101410035801028498}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 3789235020952723029}
   - component: {fileID: 7286948525057683922}
   - component: {fileID: 9027078008399615983}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,6 +259,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vfx_Impact
       objectReference: {fileID: 0}
+    - target: {fileID: 8200594586869218293, guid: d003d56ef7154e7419b06271fa960512,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -338,6 +343,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Vfx_Impact 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200594586869218293, guid: e137e9ecafb99e14594b937d0efb81ed,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
