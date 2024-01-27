@@ -34,7 +34,12 @@ public class Gun : MonoBehaviour
         _isshootSoundNotNull = shootSound != null;
         _secondsBetweenShots = 60 / rpm;
     }
-    
+
+    private void OnValidate()
+    {
+        _secondsBetweenShots = 60 / rpm;
+    }
+
     public void Shoot() 
     {
         if (CanShoot()) 
