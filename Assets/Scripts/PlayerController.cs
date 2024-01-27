@@ -13,8 +13,8 @@ public class PlayerController : MonoBehaviour
 
 	//Components
 	//public Gun gun;
-	private CharacterController controller;
-	private Camera cam;
+	private CharacterController _controller;
+	private Camera _cam;
 	private InputSystemReader _inputReader;
 	private Vector2 _directInputMove;
 	private Vector2 _directInputAim;
@@ -22,8 +22,8 @@ public class PlayerController : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		controller = GetComponent<CharacterController> ();
-		cam = Camera.main;
+		_controller = GetComponent<CharacterController> ();
+		_cam = Camera.main;
 	}
 	
 	void OnEnable()
@@ -53,32 +53,44 @@ public class PlayerController : MonoBehaviour
 
 	private void OnMove(Vector2 move)
 	{
-		//if (moveAttackCursorBack) return;
 		_directInputMove = move;
 	}
 	
-	
-	// Update is called once per frame
 	void Update () 
 	{
 		Move();
+		Aim();
 	}
 
-	void Move()
+	void Aim()
 	{
-		Vector3 input = new Vector3(_directInputMove.x,0,_directInputMove.y);
-		
+		Vector3 input = new Vector3(_directInputAim.x,0,_directInputAim.y);
 		if(input != Vector3.zero) 
 		{
 			targetRotation = Quaternion.LookRotation(input);
 			transform.eulerAngles = Vector3.up * Mathf.MoveTowardsAngle(transform.eulerAngles.y,targetRotation.eulerAngles.y,rotationSpeed * Time.deltaTime);
 		}
+	}
+	
+	void Move()
+	{
 		
-		Vector3 move = input;
+		Vector3 input = new Vector3(_directInputMove.x,0,_directInputMove.y);
+		var forward = _cam.transform.forward;
+		var right = _cam.transform.right;
+		
+		forward.y = 0f;
+		right.y = 0f;
+		forward.Normalize();
+		right.Normalize();
+		
+		var desiredMoveDirection =  right * input.x + forward * input.z;
+		
+		Vector3 move = desiredMoveDirection;
 		move *= (Mathf.Abs(input.x) == 1 && Mathf.Abs(input.z) == 1) ? .7f : 1;
 		move *= walkSpeed;
 		move += Vector3.up * -8;
 		
-		controller.Move(move * Time.deltaTime);
+		_controller.Move(move * Time.deltaTime);
 	}
 }
