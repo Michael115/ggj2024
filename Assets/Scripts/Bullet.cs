@@ -1,5 +1,4 @@
-﻿using System;
-using Unity.VisualScripting;
+﻿using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -22,9 +21,12 @@ public class Bullet : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         // Only damage things on the enemy layer.
-        if (((1 << collision.gameObject.layer) & _enemyLayer) != 0)
+        if (collision.gameObject.layer == _enemyLayer)
         {
-            print("OnCollisionEnter");
+            if (collision.gameObject.TryGetComponent(out Health health))
+            {
+                health.ApplyDamage(Damage);
+            }
         }
 
         HitEffect(collision.GetContact(0).point);
