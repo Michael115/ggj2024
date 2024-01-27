@@ -10,6 +10,12 @@ public class InputSystemReader : Input.IPlayerActions
     public event UnityAction InteractEvent = delegate { };
     public event UnityAction InteractCancelledEvent = delegate { };
     
+    public event UnityAction ShootEvent = delegate { };
+    public event UnityAction ShootCancelledEvent = delegate { };
+    
+    public event UnityAction ShootSecondaryEvent = delegate { };
+    public event UnityAction ShootSecondaryCancelledEvent = delegate { };
+    
     private Input _gameInput;
     
     public InputSystemReader(Input rawInput)
@@ -45,5 +51,28 @@ public class InputSystemReader : Input.IPlayerActions
             InteractCancelledEvent.Invoke();
         }
     }
-    
+
+    public void OnShoot(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            ShootEvent.Invoke();
+        }
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            ShootCancelledEvent.Invoke();
+        }
+    }
+
+    public void OnShootSecondary(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            ShootSecondaryEvent.Invoke();
+        }
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            ShootCancelledEvent.Invoke();
+        }
+    }
 }

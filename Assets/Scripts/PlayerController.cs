@@ -4,22 +4,19 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-   //Handling Variables
 	public float rotationSpeed = 700;
 	public float walkSpeed = 5;
-
-	//System
 	private Quaternion targetRotation;
-
-	//Components
-	//public Gun gun;
+	
+	public Gun equippedGun;
 	private CharacterController _controller;
 	private Camera _cam;
 	private InputSystemReader _inputReader;
 	private Vector2 _directInputMove;
 	private Vector2 _directInputAim;
 
-	// Use this for initialization
+	private bool _shooting;
+	
 	void Start () 
 	{
 		_controller = GetComponent<CharacterController> ();
@@ -33,6 +30,8 @@ public class PlayerController : MonoBehaviour
 		{
 			_inputReader.MoveEvent += OnMove;
 			_inputReader.AimEvent += OnAim;
+			_inputReader.ShootEvent += OnShoot;
+			_inputReader.ShootCancelledEvent += OnShootStop;
 		}
 	}
 	
@@ -43,7 +42,24 @@ public class PlayerController : MonoBehaviour
 		{
 			_inputReader.MoveEvent -= OnMove;
 			_inputReader.AimEvent -= OnAim;
+			_inputReader.ShootEvent -= OnShoot;
+			_inputReader.ShootCancelledEvent -= OnShootStop;
 		}
+	}
+
+	private void OnShootStop()
+	{
+		_shooting = false;
+	}
+
+	private void OnShoot()
+	{
+		if (equippedGun.gunFireMode == GunFireMode.Auto)
+		{
+			_shooting = true;
+		}
+		
+		equippedGun.Shoot();
 	}
 	
 	private void OnAim(Vector2 aim)
@@ -60,6 +76,11 @@ public class PlayerController : MonoBehaviour
 	{
 		Move();
 		Aim();
+		
+		if (_shooting)
+		{
+			equippedGun.Shoot();
+		}
 	}
 
 	void Aim()
@@ -74,7 +95,6 @@ public class PlayerController : MonoBehaviour
 	
 	void Move()
 	{
-		
 		Vector3 input = new Vector3(_directInputMove.x,0,_directInputMove.y);
 		var forward = _cam.transform.forward;
 		var right = _cam.transform.right;

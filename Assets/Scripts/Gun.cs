@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 public enum GunFireMode
 {
@@ -9,61 +11,58 @@ public enum GunFireMode
 public class Gun : MonoBehaviour
 { 
     public float rpm;
+    public float damage;
     public GunFireMode gunFireMode;
     public Transform shootPoint;
-    public Transform cartridgeEjectionPoint;
-    public LineRenderer effect;
+    public Transform shellEjectionPoint;
+    public float ejectForce;
+    public Rigidbody shell;
+    public Bullet bullet;
+    public float accuracyPenalty;
+    public float bulletSpeed;
+    
     public AudioSource shootSound;
     
     private float _secondsBetweenShots;
     private float _nextPossibleShootTime;
+    private bool _isshootSoundNotNull;
     
-    void Start() 
+    void Start()
     {
+        _isshootSoundNotNull = shootSound != null;
         _secondsBetweenShots = 60 / rpm;
-        if(GetComponent<LineRenderer> ()) {
-
-            effect = GetComponent<LineRenderer>();
-        }
     }
-
+    
     public void Shoot() 
     {
-        if (CanShoot ()) 
+        if (CanShoot()) 
         {
-            
             _nextPossibleShootTime = Time.time + _secondsBetweenShots;
 
-            GetComponent<AudioSource>().Play();
-
-            // if(tracer)
-            // {
-            //     StartCoroutine("RenderTracer",ray.direction * shotDistance);
-            // }
-            //
-            // Rigidbody newShell = Instantiate(shell,shellEjectionPoint.position,Quaternion.identity) as Rigidbody;
-            // newShell.AddForce(shellEjectionPoint.forward * Random.Range (200f,250f) + spawn.forward * Random.Range(-15f,15));
-        }
-
-    }
-    
-    public void ShootContinous()
-    {
-        if (gunFireMode == GunFireMode.Auto) 
-        {
-            Shoot();
+            if (_isshootSoundNotNull)
+            {
+                shootSound.PlayOneShot(shootSound.clip);
+            }
+            
+            Rigidbody shellCase = Instantiate(shell, shellEjectionPoint.position,Quaternion.identity);
+            shellCase.AddForce(shellEjectionPoint.forward * Random.Range (ejectForce*0.5f, ejectForce*1.5f) + shootPoint.forward * Random.Range(-ejectForce*0.1f,ejectForce*0.1f));
+            
+            var direction = shootPoint.forward;
+            direction = Quaternion.AngleAxis(Random.Range(0, accuracyPenalty), Vector3.up) * direction;
+            direction = Quaternion.AngleAxis(Random.Range(0, accuracyPenalty), Vector3.right) * direction;
+            direction = Quaternion.AngleAxis(Random.Range(0, accuracyPenalty), Vector3.down) * direction;
+            direction = Quaternion.AngleAxis(Random.Range(0, accuracyPenalty), Vector3.left) * direction;
+            
+            var nextBullet = Instantiate(bullet, shootPoint.position, Quaternion.LookRotation(shootPoint.forward, shootPoint.transform.up));
+            var rb = nextBullet.GetComponent<Rigidbody>();
+            rb.AddForce((direction * bulletSpeed),  ForceMode.VelocityChange);
+            nextBullet.damage = damage;
         }
     }
 
     private bool CanShoot()
     {
-        bool canShoot = true;
-
-        if(Time.time < _nextPossibleShootTime)
-        {
-            canShoot = false;
-        }
-
-        return canShoot;
+        
+        return !(Time.time < _nextPossibleShootTime);
     }
 }
