@@ -13,8 +13,6 @@ public class Health : MonoBehaviour
 
     public bool ApplyDamage(float damage)
     {
-        print($"Received {damage} damage");
-
         _health -= damage;
         if (_health <= 0)
         {
