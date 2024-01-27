@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rpm: 400
-  damage: 0
+  damage: 1
   gunFireMode: 0
   shootPoint: {fileID: 1225603675564468171}
   shellEjectionPoint: {fileID: 5036119453772926222}
