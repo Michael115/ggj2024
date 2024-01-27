@@ -7,7 +7,6 @@ public class Bullet : MonoBehaviour
     [SerializeField] private VisualEffect impactEffect;
 
     private bool _hasImpactEffect;
-    private int _enemyLayer;
 
     // set by gun
     internal float Damage;
@@ -15,18 +14,14 @@ public class Bullet : MonoBehaviour
     private void Awake()
     {
         _hasImpactEffect = impactEffect != null;
-        _enemyLayer = LayerMask.NameToLayer("Enemy");
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        // Only damage things on the enemy layer.
-        if (collision.gameObject.layer == _enemyLayer)
+        // Only damage things that have health.
+        if (collision.gameObject.TryGetComponent(out Health health))
         {
-            if (collision.gameObject.TryGetComponent(out Health health))
-            {
-                health.ApplyDamage(Damage);
-            }
+            health.ApplyDamage(Damage);
         }
 
         HitEffect(collision.GetContact(0).point);
