@@ -28,10 +28,10 @@ public class Bullet : MonoBehaviour
     {
         if (_isimpactEffectNotNull)
         {
-            impactEffect.transform.position = collisionPoint;
+            impactEffect.transform.position = collisionPoint + transform.forward * -0.1f;
             impactEffect.transform.SetParent(null);
             impactEffect.Play();
-            impactEffect.AddComponent<TimedDestroy>().duration = 5;
+            impactEffect.AddComponent<TimedDestroy>().duration = 25;
         }
     }
 }
