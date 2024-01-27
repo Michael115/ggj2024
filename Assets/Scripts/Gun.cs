@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.VFX;
 using Random = UnityEngine.Random;
 
 public enum GunFireMode
@@ -20,7 +21,8 @@ public class Gun : MonoBehaviour
     public Bullet bullet;
     public float accuracyPenalty;
     public float bulletSpeed;
-    
+
+    public VisualEffect shootEffect;
     public AudioSource shootSound;
     
     private float _secondsBetweenShots;
@@ -57,6 +59,8 @@ public class Gun : MonoBehaviour
             var rb = nextBullet.GetComponent<Rigidbody>();
             rb.AddForce((direction * bulletSpeed),  ForceMode.VelocityChange);
             nextBullet.damage = damage;
+
+            shootEffect.Play();
         }
     }
 

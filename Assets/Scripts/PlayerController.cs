@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
 	{
 		_controller = GetComponent<CharacterController> ();
 		_cam = Camera.main;
+		equippedGun = GetComponentInChildren<Gun>();
 	}
 	
 	void OnEnable()
