@@ -1,19 +1,25 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private int intervalSeconds;
     [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private Transform[] spawnPoints;
 
     private long _nextSpawnTicks;
     private long _intervalTicks;
+    private Transform[] _spawnPoints;
 
     private void Awake()
     {
         _intervalTicks = TimeSpan.FromSeconds(intervalSeconds).Ticks;
         _nextSpawnTicks = DateTime.UtcNow.Ticks + _intervalTicks;
+    }
+
+    private void Start()
+    {
+        _spawnPoints = GameObject.FindGameObjectsWithTag("Spawn").Select(x => x.transform).ToArray();
     }
 
     private void Update()
@@ -26,7 +32,7 @@ public class SpawnManager : MonoBehaviour
 
     private void Spawn()
     {
-        foreach (var spawnPoint in spawnPoints)
+        foreach (var spawnPoint in _spawnPoints)
         {
             Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
         }
