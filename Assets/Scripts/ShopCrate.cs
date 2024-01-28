@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Collider))]
 public class ShopCrate : MonoBehaviour
@@ -9,13 +11,21 @@ public class ShopCrate : MonoBehaviour
     public Light openLight;
     public Animator animator;
 
-    public Transform[] guns;
+    private Gun[] _guns;
     public bool playerCanInteract = false;
     public bool boxOpen = false;
     public bool gunReady = false;
-    
+
+    private PlayerController _player;
     private InputSystemReader _inputReader;
-    
+    private Gun _randomGun;
+
+    private void Start()
+    {
+        _player = GameObject.FindWithTag("Player").transform.root.GetComponent<PlayerController>();
+        _guns = GetComponentsInChildren<Gun>(true);
+    }
+
     void OnEnable()
     {
         _inputReader ??= GameController.Instance.InputReader;
@@ -38,45 +48,51 @@ public class ShopCrate : MonoBehaviour
     {
         if (!playerCanInteract) return;
 
-        if (boxOpen)
+        if (boxOpen && gunReady)
         {
-            
+            // Select Gun
+            _player.SetPlayerGun(_randomGun.name);
+            _randomGun.gameObject.SetActive(false);
+            gunReady = false;
         }
-        else
+        if (!boxOpen)
         {
+            boxOpen = true;
             animator.Play("Open");
-            StartCoroutine(DelayShow(0.5f));
+            StartCoroutine(DelayShow());
         }
     }
     
-    IEnumerator DelayShow(float delaySeconds)
+    IEnumerator DelayShow()
     {  
         yield return new WaitForSeconds(0.5f);
-        var randomGun = guns[Random.Range(0, guns.Length-1)];
+        _randomGun = _guns[Random.Range(0, _guns.Length-1)];
         for (int i = 10; i < 30; i++)
         {
             yield return new WaitForSeconds(i*0.01f);
-            foreach (var gun in guns)
+            foreach (var gun in _guns)
             {
                 gun.gameObject.SetActive(false);
             }
-            randomGun = guns.Where(w=>w != randomGun).ToList()[Random.Range(0, guns.Length-1)];
-            randomGun.gameObject.SetActive(true);
+            _randomGun = _guns.Where(w=>w != _randomGun).ToList()[Random.Range(0, _guns.Length-1)];
+            _randomGun.gameObject.SetActive(true);
         }
-    }
-    
-    IEnumerator DelayClose(float delaySeconds)
-    {
-        for (int i = 0; i < 20; i++)
-        {
-            yield return new WaitForSeconds(0.2f);
-            foreach (var gun in guns)
-            {
-                gun.gameObject.SetActive(false);
-            }
-            var randomGun = guns[Random.Range(0, guns.Length)];
-            randomGun.gameObject.SetActive(true);
-        }
+
+        gunReady = true;
+        
+        yield return new WaitForSeconds(3f);
+
+        gunReady = false;
+        animator.Play("Close");
+        
+        yield return new WaitForSeconds(1f);
+        openLight.enabled = false;
+        // Cooldown
+        yield return new WaitForSeconds(3f);
+        
+        openLight.enabled = true;
+        boxOpen = false;
+        
     }
     
     private void OnTriggerLeave(Collider other)

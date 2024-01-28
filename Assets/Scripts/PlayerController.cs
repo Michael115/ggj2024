@@ -10,7 +10,8 @@ public class PlayerController : MonoBehaviour
 	public float walkSpeed = 5;
 	public Animator animator;
 	private Quaternion targetRotation;
-	
+
+	private Gun[] _allGuns;
 	internal Gun equippedGun;
 	private CharacterController _controller;
 	private Camera _cam;
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
 		_controller = GetComponent<CharacterController> ();
 		_cam = Camera.main;
 		equippedGun = GetComponentInChildren<Gun>();
+		_allGuns = GetComponentsInChildren<Gun>(true);
 	}
 	
 	void OnEnable()
@@ -38,6 +40,7 @@ public class PlayerController : MonoBehaviour
 			_inputReader.ShootEvent += OnShoot;
 			_inputReader.ShootSecondaryEvent += OnShoot;
 			_inputReader.ShootCancelledEvent += OnShootStop;
+			_inputReader.ShootSecondaryEvent -= OnShootSecondary;
 			_inputReader.ShootSecondaryCancelledEvent += OnShootSecondary;
 		}
 	}
@@ -52,13 +55,19 @@ public class PlayerController : MonoBehaviour
 			_inputReader.ShootEvent -= OnShoot;
 			_inputReader.ShootSecondaryEvent -= OnShoot;
 			_inputReader.ShootCancelledEvent -= OnShootStop;
-			_inputReader.ShootSecondaryCancelledEvent -= OnShootSecondary;
+			_inputReader.ShootSecondaryEvent -= OnShootSecondary;
+			_inputReader.ShootSecondaryCancelledEvent -= OnShootSecondaryCancelled;
 		}
 	}
-	
+
+	private void OnShootSecondaryCancelled()
+	{
+		
+	}
+
 	private void OnShootSecondary()
 	{
-		throw new System.NotImplementedException();
+		
 	}
 
 
@@ -109,6 +118,22 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	public void SetPlayerGun(string gunName)
+	{
+		foreach (var gun in _allGuns)
+		{
+			if (gun.name == gunName)
+			{
+				gun.gameObject.SetActive(true);
+				equippedGun = gun;
+			}
+			else
+			{
+				gun.gameObject.SetActive(false);
+			}
+		}
+	}
+	
 	void Aim()
 	{
 		Vector3 input = new Vector3(_directInputAim.x,0,_directInputAim.y);
