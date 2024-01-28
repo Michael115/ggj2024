@@ -1,9 +1,12 @@
-﻿using Unity.VisualScripting;
+﻿using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.VFX;
 
 public class Bullet : MonoBehaviour
 {
+    public static event Action OnEnemyDeath;
+
     [SerializeField] private VisualEffect impactEffect;
     [SerializeField] private VisualEffect impactEffectEnemy;
 
@@ -24,14 +27,18 @@ public class Bullet : MonoBehaviour
         // Only damage things that have health.
         if (collision.gameObject.TryGetComponent(out Health health))
         {
-            health.ApplyDamage(Damage);
+            if (health.ApplyDamage(Damage))
+            {
+                OnEnemyDeath?.Invoke();
+            }
+
             HitEffectEnemy(collision.GetContact(0).point);
         }
         else
         {
             HitEffect(collision.GetContact(0).point);
         }
-       
+
         Destroy(gameObject);
     }
 
@@ -45,7 +52,7 @@ public class Bullet : MonoBehaviour
             impactEffectEnemy.AddComponent<TimedDestroy>().duration = 25;
         }
     }
-    
+
     private void HitEffect(Vector3 collisionPoint)
     {
         if (_hasImpactEffect)

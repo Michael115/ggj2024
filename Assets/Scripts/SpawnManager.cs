@@ -5,57 +5,74 @@ using UnityEngine.Assertions;
 
 public class SpawnManager : MonoBehaviour
 {
+    [SerializeField] private int initialWaveDelayInSeconds;
     [SerializeField] private int spawnIntervalInSeconds;
     [SerializeField] private int waveIntervalInSeconds;
     [SerializeField] private GameObject enemyPrefab;
 
     private int _currentWave;
-
-    private long _nextSpawnTicks;
-    private long _intervalTicks;
-    private Transform[] _spawnPoints;
-
+    private bool _shouldSpawn;
     private int _remainingSpawns;
+    private int _remainingEnemies;
+    private DateTime _nextSpawnTime;
+    private Transform[] _spawnPoints;
 
     private void Awake()
     {
-        _intervalTicks = TimeSpan.FromSeconds(spawnIntervalInSeconds).Ticks;
-        _nextSpawnTicks = DateTime.UtcNow.Ticks + _intervalTicks;
+        Bullet.OnEnemyDeath += OnEnemyDeath;
     }
 
     private void Start()
     {
         _spawnPoints = GameObject.FindGameObjectsWithTag("Spawn").Select(x => x.transform).ToArray();
         Assert.IsTrue(_spawnPoints.Length > 0);
+
+        NewWave(initialWaveDelayInSeconds);
     }
 
     private void Update()
     {
-        if (DateTime.UtcNow.Ticks >= _nextSpawnTicks)
+        if (_shouldSpawn && DateTime.UtcNow >= _nextSpawnTime)
         {
             Spawn();
         }
     }
 
+    private void OnEnemyDeath()
+    {
+        _remainingEnemies -= 1;
+        if (_remainingEnemies == 0)
+        {
+            NewWave(waveIntervalInSeconds);
+        }
+    }
+
+    private void NewWave(int delayInSeconds)
+    {
+        _currentWave += 1;
+        _shouldSpawn = true;
+        _remainingSpawns = GetSpawnCount(_currentWave);
+        _nextSpawnTime = DateTime.UtcNow.AddSeconds(delayInSeconds);
+        print($"wave {_currentWave} starting in {delayInSeconds} seconds ({_remainingSpawns} enemies)");
+    }
+
     private void Spawn()
     {
-        if (_remainingSpawns == 0)
+        Assert.IsTrue(_remainingSpawns > 0);
+
+        foreach (var spawnPoint in _spawnPoints)
         {
-            _currentWave += 1;
-            _remainingSpawns = GetSpawnCount(_currentWave);
-            print($"new wave - {_remainingSpawns}");
-        }
-        else
-        {
-            foreach (var spawnPoint in _spawnPoints)
+            Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
+            _remainingSpawns -= 1;
+            _remainingEnemies += 1;
+            if (_remainingSpawns == 0)
             {
-                if (_remainingSpawns == 0) break;
-                Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
-                _remainingSpawns -= 1;
+                _shouldSpawn = false;
+                return;
             }
         }
 
-        _nextSpawnTicks += _intervalTicks;
+        _nextSpawnTime = DateTime.UtcNow.AddSeconds(spawnIntervalInSeconds);
     }
 
     private static int GetSpawnCount(int wave) => (int)Math.Pow(10, Math.Cbrt(wave));
