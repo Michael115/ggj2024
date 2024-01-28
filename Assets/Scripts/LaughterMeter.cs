@@ -6,7 +6,6 @@ public class LaughterMeter : MonoBehaviour
 {
     [Range(0, 100)] public float percentage;
     [SerializeField] private float decayPerSecond;
-
     [SerializeField] private Slider laughterSlider;
 
     private void Update()
@@ -14,5 +13,10 @@ public class LaughterMeter : MonoBehaviour
         var decay = Time.deltaTime * decayPerSecond;
         percentage = Math.Max(0, percentage - decay);
         laughterSlider.value = percentage;
+
+        if (percentage >= 100)
+        {
+            // TODO: End game.
+        }
     }
 }
