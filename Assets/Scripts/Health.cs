@@ -21,6 +21,8 @@ public class Health : MonoBehaviour
 
     public bool ApplyDamage(float damage)
     {
+        if (_health <= 0) return false;
+        
         _health -= damage;
         if (_health <= 0)
         {
