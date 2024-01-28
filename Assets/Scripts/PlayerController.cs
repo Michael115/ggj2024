@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Animations;
@@ -94,9 +95,12 @@ public class PlayerController : MonoBehaviour
 		if (_directInputMove.magnitude > 0)
 		{
 			animator.Play("Run");
+			animator.speed = _directInputMove.magnitude;
+			print(_directInputMove.magnitude);
 		}
 		else
 		{
+			animator.speed = 1;
 			animator.Play("Stand");
 		}
 		
