@@ -350,7 +350,6 @@ GameObject:
   - component: {fileID: 8364696468967900858}
   - component: {fileID: 4605088030470860923}
   - component: {fileID: 4485012866628342504}
-  - component: {fileID: 4991317653906325361}
   - component: {fileID: 5742404869175250290}
   m_Layer: 7
   m_Name: Character
@@ -514,24 +513,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4991317653906325361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6759722096874366887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 287dafc5068db8c4f90015c9812a3d64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  percentage: 0
-  decayPerSecond: 1
-  laughterSlider: {fileID: 0}
-  damage: 5
-  damageIntervalInSeconds: 1
-  retryPanel: {fileID: 0}
 --- !u!114 &5742404869175250290
 MonoBehaviour:
   m_ObjectHideFlags: 0
