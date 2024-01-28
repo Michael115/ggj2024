@@ -68,6 +68,7 @@ public class ShopCrate : MonoBehaviour
             _player.SetPlayerGun(_randomGun.name);
             _randomGun.gameObject.SetActive(false);
             gunReady = false;
+            return;
         }
         if (!boxOpen)
         {
@@ -75,6 +76,7 @@ public class ShopCrate : MonoBehaviour
             boxOpen = true;
             animator.Play("Open");
             StartCoroutine(DelayShow());
+            return;
         }
     }
     
@@ -116,18 +118,16 @@ public class ShopCrate : MonoBehaviour
         
         openLight.enabled = true;
         boxOpen = false;
-   
-        
     }
-    
-    private void OnTriggerLeave(Collider other)
+
+    private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             playerCanInteract = false;
         }
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
