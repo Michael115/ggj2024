@@ -5,11 +5,6 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using Random = UnityEngine.Random;
 
-// TODO: Death
-
-// TODO: Restart game button/menu
-// TODO: Pause game (time state to zero)
-
 // TODO: Points for killing enemies
 // TODO: Display points
 
