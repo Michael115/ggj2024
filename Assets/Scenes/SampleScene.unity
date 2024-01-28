@@ -8543,12 +8543,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 737686772}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &737932051 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6759722096874366887, guid: bbe1c6a643324f542b13e52a80929dd7,
-    type: 3}
-  m_PrefabInstance: {fileID: 4538088992138673030}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &750959113
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14757,23 +14751,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4538088992138673030}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1273358842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 737932051}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 287dafc5068db8c4f90015c9812a3d64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  percentage: 0
-  decayPerSecond: 1
-  laughterSlider: {fileID: 1998272108}
-  damage: 5
-  damageIntervalInSeconds: 1
 --- !u!4 &1293370364 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8593706346371332165, guid: 6dffb92ef545abe4abd7a5249daef303,
@@ -25001,11 +24978,6 @@ PrefabInstance:
       propertyPath: m_Shadows.m_Type
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1023770005568407984, guid: bbe1c6a643324f542b13e52a80929dd7,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 3050871040056249875, guid: bbe1c6a643324f542b13e52a80929dd7,
         type: 3}
       propertyPath: m_ApplyRootMotion
@@ -25041,6 +25013,11 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 0.22
       objectReference: {fileID: 0}
+    - target: {fileID: 4991317653906325361, guid: bbe1c6a643324f542b13e52a80929dd7,
+        type: 3}
+      propertyPath: laughterSlider
+      value: 
+      objectReference: {fileID: 1998272108}
     - target: {fileID: 5751436018280440966, guid: bbe1c6a643324f542b13e52a80929dd7,
         type: 3}
       propertyPath: m_Intensity
@@ -25257,11 +25234,7 @@ PrefabInstance:
         type: 3}
       insertIndex: 2
       addedObject: {fileID: 1113133232}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6759722096874366887, guid: bbe1c6a643324f542b13e52a80929dd7,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1273358842}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbe1c6a643324f542b13e52a80929dd7, type: 3}
 --- !u!1001 &4702248501193067438
 PrefabInstance:
