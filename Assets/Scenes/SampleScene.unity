@@ -22792,7 +22792,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handle: {fileID: 146798478}
   sprite0: {fileID: 21300000, guid: b46713f4be709394fa44a2ea5a2a2023, type: 3}
-  sprite20: {fileID: 21300000, guid: eb088cd8698133543805494bcac32271, type: 3}
+  sprite20: {fileID: 21300000, guid: d61adc346b1238847bf9c4f2d6adce89, type: 3}
   sprite40: {fileID: 21300000, guid: d7b2262c5c719ec4c836dd71c229837f, type: 3}
   sprite60: {fileID: 21300000, guid: dcd400f410ab4b049ad8d669002f3ad9, type: 3}
   sprite80: {fileID: 21300000, guid: 5164ae34cbac5dd499834b3c479a2f55, type: 3}
