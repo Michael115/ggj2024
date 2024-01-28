@@ -362,7 +362,7 @@ PrefabInstance:
     - target: {fileID: 1196031534609118841, guid: b38af13a9f8f7ba479dd761e531419a1,
         type: 3}
       propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[0].m_Value
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1196031534609118841, guid: b38af13a9f8f7ba479dd761e531419a1,
         type: 3}

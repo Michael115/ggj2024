@@ -1,19 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
 	public float rotationSpeed = 700;
 	public float walkSpeed = 5;
+	public Animator animator;
 	private Quaternion targetRotation;
-	
-	public Gun equippedGun;
+
+	private Gun[] _allGuns;
+	internal Gun equippedGun;
 	private CharacterController _controller;
 	private Camera _cam;
 	private InputSystemReader _inputReader;
 	private Vector2 _directInputMove;
 	private Vector2 _directInputAim;
+	
 
 	private bool _shooting;
 	
@@ -22,6 +27,7 @@ public class PlayerController : MonoBehaviour
 		_controller = GetComponent<CharacterController> ();
 		_cam = Camera.main;
 		equippedGun = GetComponentInChildren<Gun>();
+		_allGuns = GetComponentsInChildren<Gun>(true);
 	}
 	
 	void OnEnable()
@@ -32,7 +38,10 @@ public class PlayerController : MonoBehaviour
 			_inputReader.MoveEvent += OnMove;
 			_inputReader.AimEvent += OnAim;
 			_inputReader.ShootEvent += OnShoot;
+			_inputReader.ShootSecondaryEvent += OnShoot;
 			_inputReader.ShootCancelledEvent += OnShootStop;
+			_inputReader.ShootSecondaryEvent -= OnShootSecondary;
+			_inputReader.ShootSecondaryCancelledEvent += OnShootSecondary;
 		}
 	}
 	
@@ -44,9 +53,23 @@ public class PlayerController : MonoBehaviour
 			_inputReader.MoveEvent -= OnMove;
 			_inputReader.AimEvent -= OnAim;
 			_inputReader.ShootEvent -= OnShoot;
+			_inputReader.ShootSecondaryEvent -= OnShoot;
 			_inputReader.ShootCancelledEvent -= OnShootStop;
+			_inputReader.ShootSecondaryEvent -= OnShootSecondary;
+			_inputReader.ShootSecondaryCancelledEvent -= OnShootSecondaryCancelled;
 		}
 	}
+
+	private void OnShootSecondaryCancelled()
+	{
+		
+	}
+
+	private void OnShootSecondary()
+	{
+		
+	}
+
 
 	private void OnShootStop()
 	{
@@ -77,6 +100,17 @@ public class PlayerController : MonoBehaviour
 	{
 		Move();
 		Aim();
+
+		if (_directInputMove.magnitude > 0)
+		{
+			animator.Play("Run");
+			animator.speed = _directInputMove.magnitude;
+		}
+		else
+		{
+			animator.speed = 1;
+			animator.Play("Stand");
+		}
 		
 		if (_shooting)
 		{
@@ -84,6 +118,22 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	public void SetPlayerGun(string gunName)
+	{
+		foreach (var gun in _allGuns)
+		{
+			if (gun.name == gunName)
+			{
+				gun.gameObject.SetActive(true);
+				equippedGun = gun;
+			}
+			else
+			{
+				gun.gameObject.SetActive(false);
+			}
+		}
+	}
+	
 	void Aim()
 	{
 		Vector3 input = new Vector3(_directInputAim.x,0,_directInputAim.y);

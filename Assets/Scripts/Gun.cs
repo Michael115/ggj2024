@@ -91,7 +91,6 @@ public class Gun : MonoBehaviour
     {
         yield return new WaitForSeconds(delaySeconds);
         muzzleLight.enabled = false;
-
     }
 
     private bool CanShoot()
