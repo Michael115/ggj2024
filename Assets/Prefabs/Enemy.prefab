@@ -68,14 +68,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource: {fileID: 6369715621470689542}
   audio1:
-  - {fileID: 8300000, guid: ac7903b73111e644db8d877a3f4d2c52, type: 3}
-  - {fileID: 8300000, guid: 1671e6ef7f4848d4291c9efe3aad6311, type: 3}
+  - {fileID: 8300000, guid: 11033c783039a664495f6e7da4e1d0a0, type: 3}
+  - {fileID: 8300000, guid: 17391aa3772273a48bf1b11ef1f3e137, type: 3}
+  - {fileID: 8300000, guid: b1755c7d2d536ff418146534f45985f9, type: 3}
   audio2:
-  - {fileID: 8300000, guid: 88e40e4d92f062f409c19a6f95903a15, type: 3}
-  - {fileID: 8300000, guid: 0ee872b9145561d4dbf2060616f832e7, type: 3}
+  - {fileID: 8300000, guid: 47c93db7d0089da48a2ddb45f106edd1, type: 3}
+  - {fileID: 8300000, guid: ebdb1b67645b5e94a97898cc68858fa0, type: 3}
+  - {fileID: 8300000, guid: 5a558acfc4549f9468a985b418b082f7, type: 3}
   audio3:
-  - {fileID: 8300000, guid: b312e31c2a19bfe44b69f5e654e1a8ec, type: 3}
-  - {fileID: 8300000, guid: 9b58d7ac6a9787f4fbb22d8501334079, type: 3}
+  - {fileID: 8300000, guid: 14c6eaa064f0b754dab060ff11afbaae, type: 3}
+  - {fileID: 8300000, guid: 7705df7fe1fd32f47b8cd7a8989b84c1, type: 3}
+  - {fileID: 8300000, guid: f4fdc398d7c2fa74fa2f24927823edfa, type: 3}
 --- !u!1 &4735423708524882419
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,6 +117,7 @@ Transform:
   - {fileID: 3886667356858825382}
   - {fileID: 8129539938641144043}
   - {fileID: 2800251771504328573}
+  - {fileID: 9077106971681069392}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &8428008974596291550
@@ -157,7 +161,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
   m_Height: 1.9443386
   m_Direction: 1
   m_Center: {x: 0, y: 0.8986136, z: 0}
@@ -186,6 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
+  moneyOnDeath: 100
 --- !u!82 &6369715621470689542
 AudioSource:
   m_ObjectHideFlags: 0
@@ -198,7 +203,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.35
+  m_Volume: 0.31
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -344,6 +349,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: JustDONTFuckUPanimation_NEWless
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0add9c35d9089c34ab864d766a3d4c4c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 0add9c35d9089c34ab864d766a3d4c4c,
         type: 3}
@@ -526,4 +536,88 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2f793c86977842d40b19505f80f46029,
     type: 3}
   m_PrefabInstance: {fileID: 8600561363170037504}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8823367300514643643
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 150409331818010579}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 67b60d47a763ebd4787a5322b22f95ba,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 67b60d47a763ebd4787a5322b22f95ba,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 67b60d47a763ebd4787a5322b22f95ba,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 67b60d47a763ebd4787a5322b22f95ba,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 67b60d47a763ebd4787a5322b22f95ba,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 67b60d47a763ebd4787a5322b22f95ba,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 67b60d47a763ebd4787a5322b22f95ba,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 67b60d47a763ebd4787a5322b22f95ba,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 67b60d47a763ebd4787a5322b22f95ba,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 67b60d47a763ebd4787a5322b22f95ba,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 67b60d47a763ebd4787a5322b22f95ba,
+        type: 3}
+      propertyPath: m_Name
+      value: JustDONTFuckUPanimation_GOODwalk
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 67b60d47a763ebd4787a5322b22f95ba,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: cb1a3d433e50610458c6812daab1ab3a, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 67b60d47a763ebd4787a5322b22f95ba,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 67b60d47a763ebd4787a5322b22f95ba, type: 3}
+--- !u!4 &9077106971681069392 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 67b60d47a763ebd4787a5322b22f95ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 8823367300514643643}
   m_PrefabAsset: {fileID: 0}

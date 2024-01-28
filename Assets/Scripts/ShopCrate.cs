@@ -9,6 +9,7 @@ public class ShopCrate : MonoBehaviour
 {
     public Transform showGunPosition;
     public Light openLight;
+    private Color _openLightColor;
     public Animator animator;
 
     private Gun[] _guns;
@@ -16,12 +17,18 @@ public class ShopCrate : MonoBehaviour
     public bool boxOpen = false;
     public bool gunReady = false;
 
+    public bool denied;
+    
+    public int cost = 800;
+    
     private PlayerController _player;
     private InputSystemReader _inputReader;
     private Gun _randomGun;
 
+    
     private void Start()
     {
+        _openLightColor = openLight.color;
         _player = GameObject.FindWithTag("Player").transform.root.GetComponent<PlayerController>();
         _guns = GetComponentsInChildren<Gun>(true);
     }
@@ -45,9 +52,16 @@ public class ShopCrate : MonoBehaviour
     }
     
     private void OnInteract()
-    {
+    {      
         if (!playerCanInteract) return;
-
+        if (denied) return;
+        
+        if (!boxOpen && _player.playerMoney < 800)
+        {
+            denied = true;
+            StartCoroutine(RedLight());
+            return;
+        }
         if (boxOpen && gunReady)
         {
             // Select Gun
@@ -57,10 +71,19 @@ public class ShopCrate : MonoBehaviour
         }
         if (!boxOpen)
         {
+            _player.AddMoney(-800);
             boxOpen = true;
             animator.Play("Open");
             StartCoroutine(DelayShow());
         }
+    }
+    
+    IEnumerator RedLight()
+    {
+        openLight.color = Color.red;
+        yield return new WaitForSeconds(1f);
+        openLight.color = _openLightColor;
+        denied = false;
     }
     
     IEnumerator DelayShow()
@@ -89,7 +112,7 @@ public class ShopCrate : MonoBehaviour
         yield return new WaitForSeconds(1f);
         openLight.enabled = false;
         // Cooldown
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         
         openLight.enabled = true;
         boxOpen = false;

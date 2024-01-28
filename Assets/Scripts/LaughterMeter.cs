@@ -9,6 +9,7 @@ public class LaughterMeter : MonoBehaviour
     [SerializeField] private Slider laughterSlider;
     [SerializeField] private float damage;
     [SerializeField] private float damageIntervalInSeconds;
+    [SerializeField] private GameObject retryPanel;
 
     private float _nextDamageTime;
 
@@ -26,7 +27,8 @@ public class LaughterMeter : MonoBehaviour
         laughterSlider.value = percentage;
         if (percentage >= 100)
         {
-            // TODO: End game.
+            Time.timeScale = 0;
+            retryPanel.SetActive(true);
         }
     }
 

@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 4891180885392110182}
   m_Layer: 11
   m_Name: SoundProximity
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -350,7 +350,7 @@ GameObject:
   - component: {fileID: 8364696468967900858}
   - component: {fileID: 4605088030470860923}
   - component: {fileID: 4485012866628342504}
-  - component: {fileID: 7223912245148757632}
+  - component: {fileID: 5742404869175250290}
   m_Layer: 7
   m_Name: Character
   m_TagString: Player
@@ -416,7 +416,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 700
   walkSpeed: 5
-  animator: {fileID: 3050871040056249875}
+  animator: {fileID: 0}
+  uiMoney: {fileID: 0}
+  playerMoney: 0
 --- !u!114 &7527385174104245887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -482,8 +484,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.35, y: 1, z: 0.35}
-  m_Center: {x: 0, y: 0.22, z: 0}
+  m_Size: {x: 0.5, y: 1, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &4485012866628342504
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -511,14 +513,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!81 &7223912245148757632
-AudioListener:
+--- !u!114 &5742404869175250290
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6759722096874366887}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 287dafc5068db8c4f90015c9812a3d64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  percentage: 0
+  decayPerSecond: 1
+  laughterSlider: {fileID: 0}
+  damage: 5
+  damageIntervalInSeconds: 1
+  retryPanel: {fileID: 0}
 --- !u!1001 &8880054625144992642
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -596,12 +608,6 @@ PrefabInstance:
       addedObject: {fileID: 7723231816976066218}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a601016281479145ae29b80369388a5, type: 3}
---- !u!95 &3050871040056249875 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 6a601016281479145ae29b80369388a5,
-    type: 3}
-  m_PrefabInstance: {fileID: 8880054625144992642}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6504883798221471658 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2412161367050800168, guid: 6a601016281479145ae29b80369388a5,

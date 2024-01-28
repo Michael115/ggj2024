@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -24,5 +25,11 @@ public class GameController : MonoBehaviour
     {
         _inputReader ??= new InputSystemReader(new Input());
         //NavMesh.AddNavMeshData(NavMeshData);
+    }
+
+    public void Reload()
+    {
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1;
     }
 }
