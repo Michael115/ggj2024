@@ -14769,9 +14769,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 287dafc5068db8c4f90015c9812a3d64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  percentage: 100
-  decayPerSecond: 10
+  percentage: 0
+  decayPerSecond: 1
   laughterSlider: {fileID: 1998272108}
+  damage: 5
+  damageIntervalInSeconds: 1
 --- !u!4 &1293370364 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8593706346371332165, guid: 6dffb92ef545abe4abd7a5249daef303,
