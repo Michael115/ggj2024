@@ -2604,12 +2604,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1850158866}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &214149347 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 3050871040056249875, guid: bbe1c6a643324f542b13e52a80929dd7,
-    type: 3}
-  m_PrefabInstance: {fileID: 4538088992138673030}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &215662322
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15635,7 +15629,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 8fbdf39bd7bd7c24a801c20822783ad5, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.595
+  m_Volume: 0.33
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -24562,11 +24556,6 @@ PrefabInstance:
       propertyPath: m_Shadows.m_Type
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1023770005568407984, guid: bbe1c6a643324f542b13e52a80929dd7,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 3050871040056249875, guid: bbe1c6a643324f542b13e52a80929dd7,
         type: 3}
       propertyPath: m_ApplyRootMotion
@@ -24581,26 +24570,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.114
-      objectReference: {fileID: 0}
-    - target: {fileID: 4605088030470860923, guid: bbe1c6a643324f542b13e52a80929dd7,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 4605088030470860923, guid: bbe1c6a643324f542b13e52a80929dd7,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4605088030470860923, guid: bbe1c6a643324f542b13e52a80929dd7,
-        type: 3}
-      propertyPath: m_Size.z
-      value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 4605088030470860923, guid: bbe1c6a643324f542b13e52a80929dd7,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 0.22
       objectReference: {fileID: 0}
     - target: {fileID: 5751436018280440966, guid: bbe1c6a643324f542b13e52a80929dd7,
         type: 3}
@@ -24747,11 +24716,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6260382784135780207, guid: bbe1c6a643324f542b13e52a80929dd7,
-        type: 3}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 214149347}
     - target: {fileID: 6667288919179737966, guid: bbe1c6a643324f542b13e52a80929dd7,
         type: 3}
       propertyPath: camera
@@ -25107,7 +25071,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2681139891760054078, guid: bd8a16c76b351fe40ba5953ecaa38b03, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

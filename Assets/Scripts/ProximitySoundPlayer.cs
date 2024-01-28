@@ -9,12 +9,15 @@ public class ProximitySoundPlayer : MonoBehaviour
     
     private void OnTriggerStay(Collider other)
     {
-        if (Time.time < _nextSoundTime) return;
-
-        if (other.CompareTag("Enemy") && other.TryGetComponent(out AudioSourceRandomRange audioRandom))
+     
+        if (Time.time >= _nextSoundTime)
         {
-            audioRandom.PlayRandom();
-            _nextSoundTime = Time.time + secondsBetweenSounds;
+            print($"Triggering {_nextSoundTime}");
+            if (other.CompareTag("Enemy") && other.TryGetComponent(out AudioSourceRandomRange audioRandom))
+            {
+                audioRandom.PlayRandom();
+                _nextSoundTime = Time.time + secondsBetweenSounds;
+            }
         }
     }
     // 

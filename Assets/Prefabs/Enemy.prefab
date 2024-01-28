@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3886667356858825382}
   - component: {fileID: 3971050983970693223}
+  - component: {fileID: 6483411516560552548}
   m_Layer: 11
   m_Name: Trigger
   m_TagString: Enemy
@@ -53,6 +54,28 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6483411516560552548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246566143660522584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4baa06203f748e6a4bb4f28f26c818e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 6369715621470689542}
+  audio1:
+  - {fileID: 8300000, guid: ac7903b73111e644db8d877a3f4d2c52, type: 3}
+  - {fileID: 8300000, guid: 1671e6ef7f4848d4291c9efe3aad6311, type: 3}
+  audio2:
+  - {fileID: 8300000, guid: 88e40e4d92f062f409c19a6f95903a15, type: 3}
+  - {fileID: 8300000, guid: 0ee872b9145561d4dbf2060616f832e7, type: 3}
+  audio3:
+  - {fileID: 8300000, guid: b312e31c2a19bfe44b69f5e654e1a8ec, type: 3}
+  - {fileID: 8300000, guid: 9b58d7ac6a9787f4fbb22d8501334079, type: 3}
 --- !u!1 &4735423708524882419
 GameObject:
   m_ObjectHideFlags: 0
@@ -67,7 +90,6 @@ GameObject:
   - component: {fileID: 8563861615799285699}
   - component: {fileID: 8135344938277486072}
   - component: {fileID: 6369715621470689542}
-  - component: {fileID: 7432738958590583081}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -175,7 +197,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.35
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -219,7 +241,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -259,27 +281,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7432738958590583081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4735423708524882419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4baa06203f748e6a4bb4f28f26c818e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audio1:
-  - {fileID: 8300000, guid: ac7903b73111e644db8d877a3f4d2c52, type: 3}
-  - {fileID: 8300000, guid: 1671e6ef7f4848d4291c9efe3aad6311, type: 3}
-  audio2:
-  - {fileID: 8300000, guid: 88e40e4d92f062f409c19a6f95903a15, type: 3}
-  - {fileID: 8300000, guid: 0ee872b9145561d4dbf2060616f832e7, type: 3}
-  audio3:
-  - {fileID: 8300000, guid: b312e31c2a19bfe44b69f5e654e1a8ec, type: 3}
-  - {fileID: 8300000, guid: 9b58d7ac6a9787f4fbb22d8501334079, type: 3}
 --- !u!1001 &7790597590490957404
 PrefabInstance:
   m_ObjectHideFlags: 0

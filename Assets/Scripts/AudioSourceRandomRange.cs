@@ -1,10 +1,9 @@
 ﻿using System.Linq;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
 public class AudioSourceRandomRange : MonoBehaviour
 {
-    private AudioSource audioSource;
+    public AudioSource audioSource;
     
     // Want it so that there are distinct sets of clips that should only play together, so at the start select 1 set of clips, then select randomly from that selection
     public AudioClip[] audio1;
@@ -16,8 +15,6 @@ public class AudioSourceRandomRange : MonoBehaviour
 
     void Start()
     {
-        audioSource = gameObject.GetComponent<AudioSource>();
-
         _clipSelector = new []
         {
             audio1,
@@ -33,6 +30,8 @@ public class AudioSourceRandomRange : MonoBehaviour
     {
         // play a random clip for our chosen set
         var clip = _chosenClips[Random.Range(0, _chosenClips.Length)];
+        audioSource.clip = clip;
+        print("Playing clip");
         audioSource.PlayOneShot(clip);
     }
 
