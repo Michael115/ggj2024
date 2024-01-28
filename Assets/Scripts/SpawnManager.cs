@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using Random = UnityEngine.Random;
 
-// TODO: Health/tickle bar/laugh resistance
 // TODO: Death
 
 // TODO: Restart game button/menu

@@ -81,7 +81,8 @@ public class ShopCrate : MonoBehaviour
         gunReady = true;
         
         yield return new WaitForSeconds(3f);
-
+        
+        _randomGun.gameObject.SetActive(false);
         gunReady = false;
         animator.Play("Close");
         
@@ -92,6 +93,7 @@ public class ShopCrate : MonoBehaviour
         
         openLight.enabled = true;
         boxOpen = false;
+   
         
     }
     
