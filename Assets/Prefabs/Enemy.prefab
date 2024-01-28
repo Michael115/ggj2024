@@ -113,6 +113,7 @@ Transform:
   - {fileID: 7785671424500757700}
   - {fileID: 3886667356858825382}
   - {fileID: 8129539938641144043}
+  - {fileID: 2800251771504328573}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &8428008974596291550
@@ -281,6 +282,90 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1001 &2402326645518178454
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 150409331818010579}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 0add9c35d9089c34ab864d766a3d4c4c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0add9c35d9089c34ab864d766a3d4c4c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0add9c35d9089c34ab864d766a3d4c4c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0add9c35d9089c34ab864d766a3d4c4c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0add9c35d9089c34ab864d766a3d4c4c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0add9c35d9089c34ab864d766a3d4c4c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0add9c35d9089c34ab864d766a3d4c4c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0add9c35d9089c34ab864d766a3d4c4c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0add9c35d9089c34ab864d766a3d4c4c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 0add9c35d9089c34ab864d766a3d4c4c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0add9c35d9089c34ab864d766a3d4c4c,
+        type: 3}
+      propertyPath: m_Name
+      value: JustDONTFuckUPanimation_NEWless
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 0add9c35d9089c34ab864d766a3d4c4c,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 6015719fb67baf846a63330319a6f173, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 0add9c35d9089c34ab864d766a3d4c4c,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0add9c35d9089c34ab864d766a3d4c4c, type: 3}
+--- !u!4 &2800251771504328573 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0add9c35d9089c34ab864d766a3d4c4c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2402326645518178454}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7790597590490957404
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -415,6 +500,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: JustDONTFuckUPanimation
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2f793c86977842d40b19505f80f46029,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 2f793c86977842d40b19505f80f46029,
         type: 3}

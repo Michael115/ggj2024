@@ -9,7 +9,6 @@ public class ProximitySoundPlayer : MonoBehaviour
     
     private void OnTriggerStay(Collider other)
     {
-     
         if (Time.time >= _nextSoundTime)
         {
             print($"Triggering {_nextSoundTime}");
@@ -20,5 +19,4 @@ public class ProximitySoundPlayer : MonoBehaviour
             }
         }
     }
-    // 
 }
