@@ -14,6 +14,7 @@ public class LaughterSlider : MonoBehaviour
 
     private Slider _slider;
 
+    
     private void Awake()
     {
         _slider = GetComponent<Slider>();

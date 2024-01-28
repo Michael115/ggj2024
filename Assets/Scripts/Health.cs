@@ -8,6 +8,8 @@ public class Health : MonoBehaviour
     
     private float _health;
     private PlayerController _playerController;
+    public AudioSourceRandomRange audioRandom;
+    
 
     private void Awake()
     {
@@ -21,7 +23,10 @@ public class Health : MonoBehaviour
         if (_health <= 0)
         {
             _playerController.AddMoney(moneyOnDeath);
+            audioRandom.PlayRandom();
+            
             Destroy(gameObject);
+            
             return true;
         }
 

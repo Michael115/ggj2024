@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +13,36 @@ public class LaughterMeter : MonoBehaviour
     [SerializeField] private GameObject retryPanel;
 
     private float _nextDamageTime;
+    private InputSystemReader _inputReader;
+    private bool _retry;
+  
+    void OnEnable()
+    {
+        _inputReader ??= GameController.Instance.InputReader;
+        if (_inputReader != null)
+        {
+            _inputReader.InteractEvent += OnInteract;
+        }
+    }
 
+    void OnDisable()
+    {
+        _inputReader ??= GameController.Instance.InputReader;
+        if (_inputReader != null)
+        {
+            _inputReader.InteractEvent -= OnInteract;
+        }
+    }
+    
+    
+    private void OnInteract()
+    {
+        if (_retry)
+        {
+            GameController.Instance.Reload();
+        }
+    }
+    
     private void Update()
     {
         var decay = Time.deltaTime * decayPerSecond;
@@ -29,6 +59,7 @@ public class LaughterMeter : MonoBehaviour
         {
             Time.timeScale = 0;
             retryPanel.SetActive(true);
+            _retry = true;
         }
     }
 
