@@ -5,6 +5,24 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using Random = UnityEngine.Random;
 
+// TODO: Health/tickle bar/laugh resistance
+// TODO: Death
+
+// TODO: Restart game button/menu
+// TODO: Pause game (time state to zero)
+
+// TODO: Points for killing enemies
+// TODO: Display points
+
+// TODO: Wave indicator
+// TODO: Wave notification (new wave starts, wave cooldown timer)
+
+// TODO: Use points for loot crate
+// TODO: Press "A" notification popup
+
+// TODO: Run functionality
+// TODO: Run stamina?
+
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private float initialWaveDelayInSeconds;
