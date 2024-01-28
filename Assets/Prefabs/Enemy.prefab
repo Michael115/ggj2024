@@ -270,9 +270,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4baa06203f748e6a4bb4f28f26c818e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio:
-  - {fileID: 8300000, guid: 1671e6ef7f4848d4291c9efe3aad6311, type: 3}
+  audio1:
   - {fileID: 8300000, guid: ac7903b73111e644db8d877a3f4d2c52, type: 3}
+  - {fileID: 8300000, guid: 1671e6ef7f4848d4291c9efe3aad6311, type: 3}
   audio2:
   - {fileID: 8300000, guid: 88e40e4d92f062f409c19a6f95903a15, type: 3}
   - {fileID: 8300000, guid: 0ee872b9145561d4dbf2060616f832e7, type: 3}
