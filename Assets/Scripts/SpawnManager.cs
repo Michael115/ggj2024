@@ -48,6 +48,7 @@ public class SpawnManager : MonoBehaviour
 
     private void Update()
     {
+        _remainingEnemies = Math.Max(_remainingEnemies, 0);
         if (_shouldSpawn && Time.time >= _nextSpawnTime)
         {
             Spawn();
