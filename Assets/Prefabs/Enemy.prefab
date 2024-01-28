@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6483411516560552548}
   m_Layer: 11
   m_Name: Trigger
-  m_TagString: Enemy
+  m_TagString: Sound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -230,6 +230,61 @@ MonoBehaviour:
   audio3:
   - {fileID: 8300000, guid: 1d18098e37c039c4199a2b7d312e5189, type: 3}
   - {fileID: 8300000, guid: 5e41e072ecb564d43a08ebbe9396c984, type: 3}
+--- !u!1 &3160366921214830829
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6917855190682797140}
+  - component: {fileID: 7133658573141592229}
+  m_Layer: 8
+  m_Name: DamageCollider
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6917855190682797140
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3160366921214830829}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 150409331818010579}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &7133658573141592229
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3160366921214830829}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Height: 1.9443386
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8986136, z: 0}
 --- !u!1 &4735423708524882419
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,10 +295,10 @@ GameObject:
   m_Component:
   - component: {fileID: 150409331818010579}
   - component: {fileID: 8428008974596291550}
-  - component: {fileID: 1767282708106484850}
   - component: {fileID: 8563861615799285699}
   - component: {fileID: 8135344938277486072}
   - component: {fileID: 6369715621470689542}
+  - component: {fileID: 6712683151206644213}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -270,6 +325,7 @@ Transform:
   - {fileID: 2800251771504328573}
   - {fileID: 9077106971681069392}
   - {fileID: 5672305247299683203}
+  - {fileID: 6917855190682797140}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &8428008974596291550
@@ -282,8 +338,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Speed: 3.2
+  m_Acceleration: 7
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -294,29 +350,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!136 &1767282708106484850
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4735423708524882419}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Height: 1.9443386
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.8986136, z: 0}
 --- !u!114 &8563861615799285699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,6 +474,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!136 &6712683151206644213
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4735423708524882419}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Height: 1.9443386
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8986136, z: 0}
 --- !u!1001 &2402326645518178454
 PrefabInstance:
   m_ObjectHideFlags: 0

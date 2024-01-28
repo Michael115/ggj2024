@@ -57,8 +57,9 @@ public class SpawnManager : MonoBehaviour
     private void OnEnemyDeath()
     {
         _remainingEnemies -= 1;
+        _remainingEnemies = Math.Max(_remainingEnemies, 0);
         //counter.text = $"{_remainingEnemies:N0}";
-        if (_remainingEnemies == 0)
+        if (_remainingEnemies <= 0)
         {
             NewWave(waveIntervalInSeconds);
         }

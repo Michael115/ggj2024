@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +16,21 @@ public class LaughterMeter : MonoBehaviour
     private float _nextDamageTime;
     private InputSystemReader _inputReader;
     private bool _retry;
-  
+
+    private Dictionary<int, float> nextAttacks;
+
+    public AudioSource audioLaugh;
+
+    private float _nextLaughTime;
+    public float laughTimeOut = 4f;
+
+    public AudioClip[] clips;
+    
+    private void Start()
+    {
+        nextAttacks = new Dictionary<int, float>();
+    }
+
     void OnEnable()
     {
         _inputReader ??= GameController.Instance.InputReader;
@@ -52,9 +67,29 @@ public class LaughterMeter : MonoBehaviour
 
     private void Tickle(float tickleAmount)
     {
-        _nextDamageTime = Time.time + damageIntervalInSeconds;
         percentage = Math.Min(100, percentage + tickleAmount);
         laughterSlider.value = percentage;
+
+        if (Time.time >= _nextLaughTime)
+        {
+            _nextLaughTime = Time.time + laughTimeOut;
+            var clip = percentage switch
+            {
+                < 10 => clips[0],
+                < 20 => clips[1],
+                < 30 => clips[2],
+                < 40 => clips[3],
+                < 50 => clips[4],
+                < 60 => clips[5],
+                < 70 => clips[6],
+                < 80 => clips[7],
+                < 90 => clips[8],
+                _ => clips[9],
+            };
+
+            audioLaugh.PlayOneShot(clip);
+        }
+
         if (percentage >= 100)
         {
             Time.timeScale = 0;
@@ -63,19 +98,28 @@ public class LaughterMeter : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Enemy") && Time.time >= _nextDamageTime)
-        {
-            Tickle(damage);
-        }
-    }
+    // private void OnTriggerEnter(Collider other)
+    // {
+    //     if (other.CompareTag("Enemy") && Time.time >= _nextDamageTime)
+    //     {
+    //         Tickle(damage);
+    //     }
+    // }
     
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Enemy") && Time.time >= _nextDamageTime)
+        if (!other.CompareTag("Enemy")) return;
+
+        var instanceId = other.GetInstanceID();
+        
+        nextAttacks.TryGetValue(instanceId, out float nextDamageTime);
+        
+        if (Time.time >= nextDamageTime)
         {
+            nextAttacks[instanceId] = Time.time + damageIntervalInSeconds;
             Tickle(damage);
         }
+        
+      
     }
 }

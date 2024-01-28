@@ -12,7 +12,7 @@ public class ProximitySoundPlayer : MonoBehaviour
         if (Time.time >= _nextSoundTime)
         {
             print($"Triggering {_nextSoundTime}");
-            if (other.CompareTag("Enemy") && other.TryGetComponent(out AudioSourceRandomRange audioRandom))
+            if (other.CompareTag("Sound") && other.TryGetComponent(out AudioSourceRandomRange audioRandom))
             {
                 audioRandom.PlayRandom();
                 _nextSoundTime = Time.time + secondsBetweenSounds;

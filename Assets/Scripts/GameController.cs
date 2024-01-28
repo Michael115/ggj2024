@@ -23,6 +23,9 @@ public class GameController : MonoBehaviour
     
     private void Awake()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        
         _inputReader ??= new InputSystemReader(new Input());
         //NavMesh.AddNavMeshData(NavMeshData);
     }
