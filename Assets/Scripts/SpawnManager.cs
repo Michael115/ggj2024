@@ -28,7 +28,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private float spawnIntervalInSeconds;
     [SerializeField] private float waveIntervalInSeconds;
     [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private TextMeshProUGUI counter;
+    //[SerializeField] private TextMeshProUGUI counter;
 
     [SerializeField] private float checkSpawnInterval;
     private int _currentWave;
@@ -62,7 +62,7 @@ public class SpawnManager : MonoBehaviour
     private void OnEnemyDeath()
     {
         _remainingEnemies -= 1;
-        counter.text = $"{_remainingEnemies:N0}";
+        //counter.text = $"{_remainingEnemies:N0}";
         if (_remainingEnemies == 0)
         {
             NewWave(waveIntervalInSeconds);
@@ -86,7 +86,7 @@ public class SpawnManager : MonoBehaviour
         Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
         _remainingSpawns -= 1;
         _remainingEnemies += 1;
-        counter.text = $"{_remainingEnemies:N0}";
+        //counter.text = $"{_remainingEnemies:N0}";
         if (_remainingSpawns == 0)
         {
             _shouldSpawn = false;

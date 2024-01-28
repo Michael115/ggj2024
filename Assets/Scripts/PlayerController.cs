@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.Animations;
 using UnityEngine;
 
@@ -9,6 +10,11 @@ public class PlayerController : MonoBehaviour
 	public float rotationSpeed = 700;
 	public float walkSpeed = 5;
 	public Animator animator;
+
+	public TextMeshProUGUI uiMoney;
+	
+	public int playerMoney;
+	
 	private Quaternion targetRotation;
 
 	private Gun[] _allGuns;
@@ -18,6 +24,7 @@ public class PlayerController : MonoBehaviour
 	private InputSystemReader _inputReader;
 	private Vector2 _directInputMove;
 	private Vector2 _directInputAim;
+	
 	
 
 	private bool _shooting;
@@ -96,8 +103,9 @@ public class PlayerController : MonoBehaviour
 		_directInputMove = move;
 	}
 	
-	void Update () 
+	void Update ()
 	{
+		uiMoney.text = $"Stoicism: {playerMoney}";
 		Move();
 		Aim();
 
@@ -118,6 +126,11 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	public void AddMoney(int addMoney)
+	{
+		playerMoney += addMoney;
+	}
+	
 	public void SetPlayerGun(string gunName)
 	{
 		foreach (var gun in _allGuns)
