@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rpm: 120
-  damage: 2.5
+  damage: 3.5
   numberOfBullets: 1
   numberOfShells: 1
   gunFireMode: 0

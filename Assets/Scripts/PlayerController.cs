@@ -32,7 +32,9 @@ public class PlayerController : MonoBehaviour
 			_inputReader.MoveEvent += OnMove;
 			_inputReader.AimEvent += OnAim;
 			_inputReader.ShootEvent += OnShoot;
+			_inputReader.ShootSecondaryEvent += OnShoot;
 			_inputReader.ShootCancelledEvent += OnShootStop;
+			_inputReader.ShootSecondaryCancelledEvent += OnShootSecondary;
 		}
 	}
 	
@@ -44,9 +46,17 @@ public class PlayerController : MonoBehaviour
 			_inputReader.MoveEvent -= OnMove;
 			_inputReader.AimEvent -= OnAim;
 			_inputReader.ShootEvent -= OnShoot;
+			_inputReader.ShootSecondaryEvent -= OnShoot;
 			_inputReader.ShootCancelledEvent -= OnShootStop;
+			_inputReader.ShootSecondaryCancelledEvent -= OnShootSecondary;
 		}
 	}
+	
+	private void OnShootSecondary()
+	{
+		throw new System.NotImplementedException();
+	}
+
 
 	private void OnShootStop()
 	{
