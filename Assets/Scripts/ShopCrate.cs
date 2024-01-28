@@ -1,20 +1,18 @@
-﻿using System;
+﻿using System.Collections;
 using UnityEngine;
 
-
+[RequireComponent(typeof(Collider))]
 public class ShopCrate : MonoBehaviour
 {
-    public BoxCollider interactArea;
-    private InputSystemReader _inputReader;
-    public bool playerCanInteract;
-
     public Transform showGunPosition;
-    
     public Light openLight;
     public Animator animator;
-    public bool boxOpen = false;
 
-    public GameObject guns;
+    public Transform[] guns;
+    public bool playerCanInteract = false;
+    public bool boxOpen = false;
+    
+    private InputSystemReader _inputReader;
     
     void OnEnable()
     {
@@ -36,14 +34,24 @@ public class ShopCrate : MonoBehaviour
     private void OnInteract()
     {
         if (!playerCanInteract) return;
+
+        if (boxOpen) return;
         
-        print("Player can interact");
+        animator.Play("Open");
+        StartCoroutine(DelayShow(0.5f));
+    }
+    
+    IEnumerator DelayShow(float delaySeconds)
+    {
+        yield return new WaitForSeconds(delaySeconds);
         
-        if (!boxOpen)
+        foreach (var gun in guns)
         {
-            print("Play anim");
-            animator.Play("Open");
+            gun.gameObject.SetActive(false);
         }
+        
+        var randomGun = guns[Random.Range(0, guns.Length)];
+        randomGun.gameObject.SetActive(true);
     }
     
     private void OnTriggerLeave(Collider other)
@@ -53,9 +61,9 @@ public class ShopCrate : MonoBehaviour
             playerCanInteract = false;
         }
     }
+    
     private void OnTriggerEnter(Collider other)
     {
-        print("Player at crate");
         if (other.CompareTag("Player"))
         {
             playerCanInteract = true;
