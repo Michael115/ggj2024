@@ -197,8 +197,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29bdd2469e274e29b40d26b384d9ea16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rpm: 450
-  damage: 3
+  rpm: 480
+  damage: 4
   numberOfBullets: 1
   numberOfShells: 1
   gunFireMode: 0
@@ -362,7 +362,7 @@ PrefabInstance:
     - target: {fileID: 1196031534609118841, guid: b38af13a9f8f7ba479dd761e531419a1,
         type: 3}
       propertyPath: m_PropertySheet.m_Float.m_Array.Array.data[0].m_Value
-      value: 0.5
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 1196031534609118841, guid: b38af13a9f8f7ba479dd761e531419a1,
         type: 3}
