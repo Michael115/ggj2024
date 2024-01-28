@@ -7,17 +7,18 @@ using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField] private int initialWaveDelayInSeconds;
-    [SerializeField] private int spawnIntervalInSeconds;
-    [SerializeField] private int waveIntervalInSeconds;
+    [SerializeField] private float initialWaveDelayInSeconds;
+    [SerializeField] private float spawnIntervalInSeconds;
+    [SerializeField] private float waveIntervalInSeconds;
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private TextMeshProUGUI counter;
 
+    [SerializeField] private float checkSpawnInterval;
     private int _currentWave;
     private bool _shouldSpawn;
     private int _remainingSpawns;
     private int _remainingEnemies;
-    private DateTime _nextSpawnTime;
+    private float _nextSpawnTime;
     private Transform[] _spawnPoints;
 
     private void Awake()
@@ -35,7 +36,7 @@ public class SpawnManager : MonoBehaviour
 
     private void Update()
     {
-        if (_shouldSpawn && DateTime.UtcNow >= _nextSpawnTime)
+        if (_shouldSpawn && Time.time >= _nextSpawnTime)
         {
             Spawn();
         }
@@ -51,12 +52,12 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    private void NewWave(int delayInSeconds)
+    private void NewWave(float delayInSeconds)
     {
         _currentWave += 1;
         _shouldSpawn = true;
         _remainingSpawns = GetSpawnCount(_currentWave);
-        _nextSpawnTime = DateTime.UtcNow.AddSeconds(delayInSeconds);
+        _nextSpawnTime = Time.time + delayInSeconds;
         print($"wave {_currentWave} starting in {delayInSeconds} seconds ({_remainingSpawns} enemies)");
     }
 
@@ -75,7 +76,8 @@ public class SpawnManager : MonoBehaviour
             return;
         }
 
-        _nextSpawnTime = DateTime.UtcNow.AddSeconds(spawnIntervalInSeconds);
+        checkSpawnInterval = Math.Max(spawnIntervalInSeconds - (_currentWave * 0.3f), 0.1f);
+        _nextSpawnTime = Time.time + checkSpawnInterval;
     }
 
     private static int GetSpawnCount(int wave) => (int)Math.Pow(10, Math.Cbrt(wave));

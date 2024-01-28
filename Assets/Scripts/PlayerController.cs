@@ -96,7 +96,6 @@ public class PlayerController : MonoBehaviour
 		{
 			animator.Play("Run");
 			animator.speed = _directInputMove.magnitude;
-			print(_directInputMove.magnitude);
 		}
 		else
 		{
