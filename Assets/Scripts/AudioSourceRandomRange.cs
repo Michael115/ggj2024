@@ -33,8 +33,7 @@ public class AudioSourceRandomRange : MonoBehaviour
     {
         // play a random clip for our chosen set
         var clip = _chosenClips[Random.Range(0, _chosenClips.Length)];
-        audioSource.clip = clip;
-        audioSource.Play();
+        audioSource.PlayOneShot(clip);
     }
 
 }
