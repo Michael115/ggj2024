@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
+using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -60,16 +61,14 @@ public class SpawnManager : MonoBehaviour
     {
         Assert.IsTrue(_remainingSpawns > 0);
 
-        foreach (var spawnPoint in _spawnPoints)
+        var spawnPoint = _spawnPoints[Random.Range(0, _spawnPoints.Length)];
+        Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
+        _remainingSpawns -= 1;
+        _remainingEnemies += 1;
+        if (_remainingSpawns == 0)
         {
-            Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
-            _remainingSpawns -= 1;
-            _remainingEnemies += 1;
-            if (_remainingSpawns == 0)
-            {
-                _shouldSpawn = false;
-                return;
-            }
+            _shouldSpawn = false;
+            return;
         }
 
         _nextSpawnTime = DateTime.UtcNow.AddSeconds(spawnIntervalInSeconds);

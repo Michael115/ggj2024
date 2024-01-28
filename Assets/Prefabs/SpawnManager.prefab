@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialWaveDelayInSeconds: 0
-  spawnIntervalInSeconds: 5
+  spawnIntervalInSeconds: 2
   waveIntervalInSeconds: 10
   enemyPrefab: {fileID: 4735423708524882419, guid: 97df6aca9329c364988ced6ac96f4d3f,
     type: 3}
