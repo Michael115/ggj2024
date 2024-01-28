@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Health : MonoBehaviour
@@ -9,6 +10,7 @@ public class Health : MonoBehaviour
     private float _health;
     private PlayerController _playerController;
     public AudioSourceRandomRange audioRandom;
+    public AudioSource audioDeath;
     
 
     private void Awake()
@@ -23,6 +25,8 @@ public class Health : MonoBehaviour
         if (_health <= 0)
         {
             _playerController.AddMoney(moneyOnDeath);
+            audioDeath.transform.parent = null;
+            audioDeath.AddComponent<TimedDestroy>().duration = 10;
             audioRandom.PlayRandom();
             
             Destroy(gameObject);

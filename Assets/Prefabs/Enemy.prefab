@@ -89,6 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5672305247299683203}
   - component: {fileID: 6834486833217279957}
+  - component: {fileID: 8632434693202901120}
   m_Layer: 0
   m_Name: DeathAudio
   m_TagString: Untagged
@@ -167,7 +168,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -207,6 +208,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8632434693202901120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2910502186204335214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4baa06203f748e6a4bb4f28f26c818e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 6834486833217279957}
+  audio1:
+  - {fileID: 8300000, guid: 4d92b52caaee62d409b2fb83b6c2dbf3, type: 3}
+  - {fileID: 8300000, guid: 260b40cfcf372aa4a919b840132ab2da, type: 3}
+  audio2:
+  - {fileID: 8300000, guid: bec080875222d6148a8792882ac531dd, type: 3}
+  - {fileID: 8300000, guid: 2d550d6c83183bd45aa50eb85e657c4b, type: 3}
+  audio3:
+  - {fileID: 8300000, guid: 1d18098e37c039c4199a2b7d312e5189, type: 3}
+  - {fileID: 8300000, guid: 5e41e072ecb564d43a08ebbe9396c984, type: 3}
 --- !u!1 &4735423708524882419
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,7 +244,6 @@ GameObject:
   - component: {fileID: 8563861615799285699}
   - component: {fileID: 8135344938277486072}
   - component: {fileID: 6369715621470689542}
-  - component: {fileID: 8370372211584354319}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -321,7 +343,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   moneyOnDeath: 100
-  audioRandom: {fileID: 8370372211584354319}
+  audioRandom: {fileID: 8632434693202901120}
+  audioDeath: {fileID: 6834486833217279957}
 --- !u!82 &6369715621470689542
 AudioSource:
   m_ObjectHideFlags: 0
@@ -418,28 +441,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8370372211584354319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4735423708524882419}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4baa06203f748e6a4bb4f28f26c818e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSource: {fileID: 6834486833217279957}
-  audio1:
-  - {fileID: 8300000, guid: 4d92b52caaee62d409b2fb83b6c2dbf3, type: 3}
-  - {fileID: 8300000, guid: 260b40cfcf372aa4a919b840132ab2da, type: 3}
-  audio2:
-  - {fileID: 8300000, guid: bec080875222d6148a8792882ac531dd, type: 3}
-  - {fileID: 8300000, guid: 2d550d6c83183bd45aa50eb85e657c4b, type: 3}
-  audio3:
-  - {fileID: 8300000, guid: 1d18098e37c039c4199a2b7d312e5189, type: 3}
-  - {fileID: 8300000, guid: 5e41e072ecb564d43a08ebbe9396c984, type: 3}
 --- !u!1001 &2402326645518178454
 PrefabInstance:
   m_ObjectHideFlags: 0
