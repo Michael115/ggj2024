@@ -5,13 +5,8 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using Random = UnityEngine.Random;
 
-// TODO: Points for killing enemies
-// TODO: Display points
-
-// TODO: Wave indicator
 // TODO: Wave notification (new wave starts, wave cooldown timer)
 
-// TODO: Use points for loot crate
 // TODO: Press "A" notification popup
 
 // TODO: Run functionality
@@ -23,7 +18,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private float spawnIntervalInSeconds;
     [SerializeField] private float waveIntervalInSeconds;
     [SerializeField] private GameObject enemyPrefab;
-    //[SerializeField] private TextMeshProUGUI counter;
+    [SerializeField] private TextMeshProUGUI waveUI;
 
     [SerializeField] private float checkSpawnInterval;
     private int _currentWave;
@@ -73,6 +68,8 @@ public class SpawnManager : MonoBehaviour
         _remainingSpawns = GetSpawnCount(_currentWave);
         _nextSpawnTime = Time.time + delayInSeconds;
         print($"wave {_currentWave} starting in {delayInSeconds} seconds ({_remainingSpawns} enemies)");
+
+        waveUI.text = $"Wave {_currentWave:n0}";
     }
 
     private void Spawn()
