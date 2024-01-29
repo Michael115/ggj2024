@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -25,6 +24,7 @@ public class ShopCrate : MonoBehaviour
     private InputSystemReader _inputReader;
     private Gun _randomGun;
 
+   [SerializeField] private GameObject openButton;
     
     private void Start()
     {
@@ -125,6 +125,7 @@ public class ShopCrate : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerCanInteract = false;
+            openButton.SetActive(false);
         }
     }
 
@@ -133,6 +134,7 @@ public class ShopCrate : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerCanInteract = true;
+            openButton.SetActive(true);
         }
     }
 }

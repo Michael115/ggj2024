@@ -7,8 +7,6 @@ using Random = UnityEngine.Random;
 
 // TODO: Wave notification (new wave starts, wave cooldown timer)
 
-// TODO: Press "A" notification popup
-
 // TODO: Run functionality
 // TODO: Run stamina?
 
