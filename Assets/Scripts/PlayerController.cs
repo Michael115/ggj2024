@@ -7,7 +7,8 @@ public class PlayerController : MonoBehaviour
 	public float rotationSpeed = 700;
 	public float walkSpeed = 5;
 	public Animator animator;
-
+	public Texture2D cursorTexture;
+	
 	public TextMeshProUGUI uiMoney;
 	
 	public int playerMoney;
@@ -148,22 +149,25 @@ public class PlayerController : MonoBehaviour
 	
 	void Aim()
 	{
-
 		var mousePos = Mouse.current.position.ReadValue();
 		if (_directInputAim.magnitude <= 0 && !_lastPos.Equals(mousePos))
 		{
+			Cursor.SetCursor(cursorTexture, new Vector2(8,8), CursorMode.ForceSoftware);
+			Cursor.visible = true;
 			Ray ray = _cam.ScreenPointToRay(mousePos);
 
 			if (Physics.Raycast(ray, out var hit, float.MaxValue, _mousePlaneLayer))
 			{
-				var dir = (hit.point - transform.position);
+				var pos = new Vector3(hit.point.x, transform.position.y, hit.point.z);
+				var dir = (pos - transform.position);
 				targetRotation = Quaternion.LookRotation(dir);
 				transform.eulerAngles = Vector3.up * Mathf.MoveTowardsAngle(transform.eulerAngles.y,
 					targetRotation.eulerAngles.y, rotationSpeed * Time.deltaTime);
 			}
 		}
-		else
+		else if(_directInputAim.magnitude > 0)
 		{
+			Cursor.visible = false;
 			Vector3 input = new Vector3(_directInputAim.x, 0, _directInputAim.y);
 			if (input != Vector3.zero)
 			{

@@ -23,7 +23,6 @@ public class GameController : MonoBehaviour
     
     private void Awake()
     {
-        Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
         
         _inputReader ??= new InputSystemReader(new Input());
