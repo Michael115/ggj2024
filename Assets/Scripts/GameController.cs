@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    public float bodyDisappearTime = 20f;
+    
     private InputSystemReader _inputReader;
     
     private static GameController _instance;

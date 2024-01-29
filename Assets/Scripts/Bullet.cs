@@ -15,6 +15,7 @@ public class Bullet : MonoBehaviour
 
     // set by gun
     internal float Damage;
+    internal Vector3 dir;
 
     private void Awake()
     {
@@ -22,17 +23,19 @@ public class Bullet : MonoBehaviour
         _hasImpactEffectEnemy = impactEffectEnemy != null;
     }
 
+
     void OnCollisionEnter(Collision collision)
     {
         // Only damage things that have health.
         if (collision.gameObject.TryGetComponent(out Health health))
         {
-            if (health.ApplyDamage(Damage))
+            var pt = collision.GetContact(0).point;
+            if (health.ApplyDamage(Damage, pt, dir))
             {
                 OnEnemyDeath?.Invoke();
             }
 
-            HitEffectEnemy(collision.GetContact(0).point);
+            HitEffectEnemy(pt);
         }
         else
         {
