@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,7 +19,7 @@ public class VisibilityController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Inside"))
         {
@@ -37,13 +38,17 @@ public class VisibilityController : MonoBehaviour
                 meshRenderer.enabled = false;
             }
         }
-        // We can't easily use OnTriggerExit as we have multiple colliders within a single building
-        else if (other.CompareTag("Outside"))
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Inside"))
         {
             foreach (var material in seeThroughMaterials)
             {
                 material.SetFloat(SizeID, 0);
             }
+
             foreach (var meshRenderer in _meshRenderers)
             {
                 meshRenderer.enabled = true;
