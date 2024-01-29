@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,13 +21,15 @@ public class PlayerController : MonoBehaviour
 	private InputSystemReader _inputReader;
 	private Vector2 _directInputMove;
 	private Vector2 _directInputAim;
-	
+	private LayerMask _mousePlaneLayer;
 	
 
 	private bool _shooting;
+	private Vector3 _lastPos;
 	
-	void Start () 
+	void Start ()
 	{
+		_mousePlaneLayer = LayerMask.GetMask("Mouse");
 		_controller = GetComponent<CharacterController> ();
 		_cam = Camera.main;
 		equippedGun = GetComponentInChildren<Gun>();
@@ -145,12 +148,32 @@ public class PlayerController : MonoBehaviour
 	
 	void Aim()
 	{
-		Vector3 input = new Vector3(_directInputAim.x,0,_directInputAim.y);
-		if(input != Vector3.zero) 
+
+		var mousePos = Mouse.current.position.ReadValue();
+		if (_directInputAim.magnitude <= 0 && !_lastPos.Equals(mousePos))
 		{
-			targetRotation = Quaternion.LookRotation(input);
-			transform.eulerAngles = Vector3.up * Mathf.MoveTowardsAngle(transform.eulerAngles.y,targetRotation.eulerAngles.y,rotationSpeed * Time.deltaTime);
+			Ray ray = _cam.ScreenPointToRay(mousePos);
+
+			if (Physics.Raycast(ray, out var hit, float.MaxValue, _mousePlaneLayer))
+			{
+				var dir = (hit.point - transform.position);
+				targetRotation = Quaternion.LookRotation(dir);
+				transform.eulerAngles = Vector3.up * Mathf.MoveTowardsAngle(transform.eulerAngles.y,
+					targetRotation.eulerAngles.y, rotationSpeed * Time.deltaTime);
+			}
 		}
+		else
+		{
+			Vector3 input = new Vector3(_directInputAim.x, 0, _directInputAim.y);
+			if (input != Vector3.zero)
+			{
+				targetRotation = Quaternion.LookRotation(input);
+				transform.eulerAngles = Vector3.up * Mathf.MoveTowardsAngle(transform.eulerAngles.y,
+					targetRotation.eulerAngles.y, rotationSpeed * Time.deltaTime);
+			}
+		}
+
+		_lastPos = Mouse.current.position.ReadValue();
 	}
 	
 	void Move()

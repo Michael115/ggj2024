@@ -9,6 +9,7 @@ TagManager:
   - Inside
   - Enemy
   - Sound
+  - MousePlane
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Enemy
   - Bullet
   - Sounds
-  - 
+  - Mouse
   - 
   - 
   - 
