@@ -23,11 +23,24 @@ public class FollowPlayer : MonoBehaviour
     private void Awake()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
-        _navMeshAgent.speed += Random.Range(-speed_mod_spread, speed_mod_spread);
+
+        var orig_speed = _navMeshAgent.speed;
+        var speed_mod = Random.Range(-speed_mod_spread, speed_mod_spread);
+        var new_speed = orig_speed + speed_mod;
+        _navMeshAgent.speed = new_speed;
+
+        Animator anim = GetComponentInChildren<Animator>();
+        var base_anim_speed = 1.5f;
+        var anim_multiplier = new_speed / orig_speed;
+        anim.speed = base_anim_speed * anim_multiplier;
+
         _navMeshAgent.radius = Random.Range(radius_low, radius_high);
         reaction_speed = Random.Range(reaction_speed_low, reaction_speed_high);
 
-        destination_offset = new Vector3(Random.Range(-2.0f, 2.0f), 0.0f, Random.Range(-2.0f, 2.0f));
+        destination_offset = new Vector3(Random.Range(-1.5f, 1.5f), 0.0f, Random.Range(-1.5f, 1.5f));
+
+
+
     }
 
     private void Start()

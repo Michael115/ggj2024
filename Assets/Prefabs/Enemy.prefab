@@ -364,7 +364,7 @@ MonoBehaviour:
   radius_low: 0.25
   radius_high: 0.5
   reaction_speed_low: 0.05
-  reaction_speed_high: 0.6
+  reaction_speed_high: 0.5
 --- !u!114 &8135344938277486072
 MonoBehaviour:
   m_ObjectHideFlags: 0
