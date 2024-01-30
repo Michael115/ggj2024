@@ -8,9 +8,26 @@ public class FollowPlayer : MonoBehaviour
     private NavMeshAgent _navMeshAgent;
     private Transform[] _playerTransforms;
 
+    public float speed_mod_spread = 0.5f;
+    public float radius_low = 0.25f;
+    public float radius_high = 1.0f;
+
+    public float reaction_speed_low = 0.05f;
+    public float reaction_speed_high = 0.25f;
+    private float reaction_speed;
+
+    private float time_till_next_dest_upd = 0.0f;
+
+    private Vector3 destination_offset;
+
     private void Awake()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
+        _navMeshAgent.speed += Random.Range(-speed_mod_spread, speed_mod_spread);
+        _navMeshAgent.radius = Random.Range(radius_low, radius_high);
+        reaction_speed = Random.Range(reaction_speed_low, reaction_speed_high);
+
+        destination_offset = new Vector3(Random.Range(-2.0f, 2.0f), 0.0f, Random.Range(-2.0f, 2.0f));
     }
 
     private void Start()
@@ -25,9 +42,20 @@ public class FollowPlayer : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         const int playerIndex = 0;
-        _navMeshAgent.destination = _playerTransforms[playerIndex].position;
+
+        time_till_next_dest_upd -= Time.deltaTime;
+
+        if (time_till_next_dest_upd <= 0.0){
+            time_till_next_dest_upd = reaction_speed;
+            _navMeshAgent.destination = _playerTransforms[playerIndex].position;
+
+            // If the enemy is a little bit farther away, add some noise into their navigation to mix up swarm shapes
+            if(Vector3.Distance(_playerTransforms[playerIndex].position, transform.position) >= 5.0f){
+                _navMeshAgent.destination = _playerTransforms[playerIndex].position + destination_offset; 
+            }
+        }
     }
 }
