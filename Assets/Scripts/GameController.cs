@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class GameController : MonoBehaviour
 {
@@ -36,4 +37,5 @@ public class GameController : MonoBehaviour
         SceneManager.LoadScene(0);
         Time.timeScale = 1;
     }
+
 }
