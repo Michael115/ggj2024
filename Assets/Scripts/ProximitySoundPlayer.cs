@@ -4,19 +4,11 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class ProximitySoundPlayer : MonoBehaviour
 {
-    private float _nextSoundTime;
-    public float secondsBetweenSounds = 3f;
-    
     private void OnTriggerStay(Collider other)
     {
-        if (Time.time >= _nextSoundTime)
+        if (other.CompareTag("Sound") && other.TryGetComponent(out AudioSourceRandomRange audioRandom))
         {
-            print($"Triggering {_nextSoundTime}");
-            if (other.CompareTag("Sound") && other.TryGetComponent(out AudioSourceRandomRange audioRandom))
-            {
-                audioRandom.PlayRandom();
-                _nextSoundTime = Time.time + secondsBetweenSounds;
-            }
+            audioRandom.PlayRandom();
         }
     }
 }

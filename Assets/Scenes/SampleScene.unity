@@ -28997,6 +28997,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.114
       objectReference: {fileID: 0}
+    - target: {fileID: 5723814799465319120, guid: bbe1c6a643324f542b13e52a80929dd7,
+        type: 3}
+      propertyPath: m_Radius
+      value: 4.9
+      objectReference: {fileID: 0}
     - target: {fileID: 5742404869175250290, guid: bbe1c6a643324f542b13e52a80929dd7,
         type: 3}
       propertyPath: audioLaugh

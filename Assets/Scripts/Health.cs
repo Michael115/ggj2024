@@ -37,6 +37,7 @@ public class Health : MonoBehaviour
         _audio = GetComponent<AudioSource>();
         _collider = GetComponent<CapsuleCollider>();
         _mask = LayerMask.GetMask("Ragdoll");
+
     }
 
     
@@ -52,8 +53,15 @@ public class Health : MonoBehaviour
             dead = true;
             
             _playerController.AddMoney(moneyOnDeath);
+
+            // Stop any existing chatter first;
+            foreach(AudioSource audSource in GetComponentsInChildren<AudioSource>())
+            {
+                audSource.Stop();
+            }
+            
             audioDeath.transform.parent = null;
-            audioDeath.AddComponent<TimedDestroy>().duration = 10;
+            audioDeath.AddComponent<TimedDestroy>().duration = 5;
             audioRandom.PlayRandom();
 
             foreach (var disable in disables)

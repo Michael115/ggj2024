@@ -12,6 +12,9 @@ public class AudioSourceRandomRange : MonoBehaviour
 
     private AudioClip[][] _clipSelector;
     private AudioClip[] _chosenClips;
+    
+    public float secondsBetweenSounds = 3f;
+    private float _nextSoundTime = 0.0f;
 
     void Start()
     {
@@ -28,11 +31,18 @@ public class AudioSourceRandomRange : MonoBehaviour
 
     public void PlayRandom()
     {
-        // play a random clip for our chosen set
-        var clip = _chosenClips[Random.Range(0, _chosenClips.Length)];
-        audioSource.clip = clip;
-        print("Playing clip");
-        audioSource.PlayOneShot(clip);
+        if (Time.time >= _nextSoundTime)
+        {
+            // play a random clip for our chosen set
+            var clip = _chosenClips[Random.Range(0, _chosenClips.Length)];
+            audioSource.clip = clip;
+            print("Playing clip");
+
+            // Randomize pitch also
+            audioSource.pitch = Random.Range(0.8f, 1.2f);
+            audioSource.PlayOneShot(clip);
+            _nextSoundTime = Time.time + secondsBetweenSounds;
+        }
     }
 
 }
