@@ -8,6 +8,7 @@ public class PlayFade : MonoBehaviour
 {
     public GameObject fadePanel;
     private AudioSource playSound;
+    public AudioSource backgroundMusic;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +28,7 @@ public class PlayFade : MonoBehaviour
         button.interactable = false;
 
         playSound.Play();
+        backgroundMusic.Stop();
         fadePanel.SetActive(true);
     }
 }
