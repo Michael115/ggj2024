@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
         _cam = Camera.main;
         equippedGun = GetComponentInChildren<Gun>();
         _allGuns = GetComponentsInChildren<Gun>(true);
+
+        print(_allGuns);
     }
 
     void OnEnable()
@@ -124,6 +126,12 @@ public class PlayerController : MonoBehaviour
         {
             equippedGun.Shoot();
         }
+
+        if(equippedGun.GetCurrentAmmo() <= 0)
+        {
+            print("Out of Ammo!");
+            SetPlayerGun("Pistol");
+        }
     }
 
     public void AddMoney(int addMoney)
@@ -131,20 +139,23 @@ public class PlayerController : MonoBehaviour
         playerMoney += addMoney;
     }
 
+    public Gun GetPlayerGun()
+    {
+        return equippedGun;
+    }
+
     public void SetPlayerGun(string gunName)
     {
         gunUI.SetGun(gunName);
 
-        foreach (var gun in _allGuns)
+        foreach(var gun in _allGuns)
         {
+            gun.gameObject.SetActive(false);
+            
             if (gun.name == gunName)
             {
                 gun.gameObject.SetActive(true);
                 equippedGun = gun;
-            }
-            else
-            {
-                gun.gameObject.SetActive(false);
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.VFX;
@@ -34,15 +35,28 @@ public class Gun : MonoBehaviour
     private float _nextPossibleShootTime;
     private bool _isshootSoundNotNull;
 
+    public int maxAmmo = 100;
+    private int currentAmmo;
+
     void Start()
     {
         _isshootSoundNotNull = shootSound != null;
         _secondsBetweenShots = 60 / rpm;
     }
 
+    private void OnEnable()
+    {
+        currentAmmo = maxAmmo;
+    }
+
     private void OnValidate()
     {
         _secondsBetweenShots = 60 / rpm;
+    }
+
+    public int GetCurrentAmmo()
+    {
+        return currentAmmo;
     }
 
     public void Shoot()
@@ -80,6 +94,8 @@ public class Gun : MonoBehaviour
             nextBullet.Damage = damage;
             nextBullet.dir = direction;
         }
+
+        currentAmmo -= 1;
      
         shootEffect.Play();
 
@@ -97,6 +113,6 @@ public class Gun : MonoBehaviour
 
     private bool CanShoot()
     {
-        return !(Time.time < _nextPossibleShootTime);
+        return Time.time >= _nextPossibleShootTime && currentAmmo > 0;
     }
 }

@@ -212,6 +212,7 @@ MonoBehaviour:
   muzzleLight: {fileID: 9105173807290963688}
   shootEffect: {fileID: 2061610475510596831}
   shootSound: {fileID: 1783058374522203291}
+  maxAmmo: 25
 --- !u!82 &1783058374522203291
 AudioSource:
   m_ObjectHideFlags: 0
