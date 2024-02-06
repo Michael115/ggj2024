@@ -26,6 +26,9 @@ public class ShopCrate : MonoBehaviour
 
     public float stayOpenTime;
 
+    public AudioSource slotMachineSound;
+    public AudioSource gunParty;
+
     [SerializeField] private GameObject openButton;
 
     private void Start()
@@ -97,6 +100,7 @@ public class ShopCrate : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         _randomGun = _guns[Random.Range(0, _guns.Length - 1)];
+        slotMachineSound.Play();
         for (int i = 10; i < 30; i++)
         {
             yield return new WaitForSeconds(i * 0.01f);
@@ -110,6 +114,8 @@ public class ShopCrate : MonoBehaviour
         }
 
         gunReady = true;
+        slotMachineSound.Stop();
+        gunParty.PlayDelayed(0.1f);
 
         yield return new WaitForSeconds(stayOpenTime);
 
