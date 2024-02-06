@@ -810,7 +810,7 @@ MonoBehaviour:
   boxOpen: 0
   gunReady: 0
   denied: 0
-  cost: 0
+  cost: 800
   stayOpenTime: 7.5
   slotMachineSound: {fileID: 8783556129970911084}
   gunParty: {fileID: 1435181570591095140}

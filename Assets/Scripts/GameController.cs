@@ -34,7 +34,7 @@ public class GameController : MonoBehaviour
 
     public void Reload()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
         Time.timeScale = 1;
     }
 
