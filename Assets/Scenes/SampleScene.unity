@@ -12620,6 +12620,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3f6802957afa694a85c405bc4bff0a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shakeAmpMax: 2
+  shakeSpeedMax: 50
+  lowAmmoThreshold: 0.25
+  fullAmmoColor: {r: 0.149055, g: 1, b: 0, a: 1}
+  lowAmmoColor: {r: 0.8207547, g: 0, b: 0, a: 1}
 --- !u!1001 &981243285
 PrefabInstance:
   m_ObjectHideFlags: 0
