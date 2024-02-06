@@ -22,6 +22,7 @@ public class LaughterMeter : MonoBehaviour
 
     private float _nextLaughTime;
     public float laughTimeOut = 4f;
+    private int prevClipID = -1;
 
     public AudioClip[] clips;
     
@@ -69,25 +70,17 @@ public class LaughterMeter : MonoBehaviour
         percentage = Math.Min(100, percentage + tickleAmount);
         laughterSlider.value = percentage;
 
-        if (Time.time >= _nextLaughTime)
+        var currentClipID = Math.Min((int) ((percentage / 100.0f) * clips.Length), clips.Length - 1);
+        var clip = clips[currentClipID];
+
+        if (Time.time >= _nextLaughTime || currentClipID != prevClipID)
         {
             _nextLaughTime = Time.time + laughTimeOut;
-            var clip = percentage switch
-            {
-                < 10 => clips[0],
-                < 20 => clips[1],
-                < 30 => clips[2],
-                < 40 => clips[3],
-                < 50 => clips[4],
-                < 60 => clips[5],
-                < 70 => clips[6],
-                < 80 => clips[7],
-                < 90 => clips[8],
-                _ => clips[9],
-            };
-
+            audioLaugh.Stop();
             audioLaugh.PlayOneShot(clip);
         }
+
+        prevClipID = currentClipID;
 
         if (percentage >= 100)
         {
