@@ -28,6 +28,7 @@ public class ShopCrate : MonoBehaviour
 
     public AudioSource slotMachineSound;
     public AudioSource gunParty;
+    public AudioSource purchaseSound;
 
     [SerializeField] private GameObject openButton;
 
@@ -80,6 +81,7 @@ public class ShopCrate : MonoBehaviour
         if (!boxOpen)
         {
             _player.AddMoney(-cost);
+            purchaseSound.Play();
             boxOpen = true;
             openButton.SetActive(false);
             animator.Play("Open");
