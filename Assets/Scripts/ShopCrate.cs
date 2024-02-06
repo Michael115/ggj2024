@@ -24,6 +24,8 @@ public class ShopCrate : MonoBehaviour
     private InputSystemReader _inputReader;
     private Gun _randomGun;
 
+    public float stayOpenTime;
+
     [SerializeField] private GameObject openButton;
 
     private void Start()
@@ -56,7 +58,7 @@ public class ShopCrate : MonoBehaviour
         if (!playerCanInteract) return;
         if (denied) return;
 
-        if (!boxOpen && _player.playerMoney < 800)
+        if (!boxOpen && _player.playerMoney < cost)
         {
             denied = true;
             StartCoroutine(RedLight());
@@ -74,7 +76,7 @@ public class ShopCrate : MonoBehaviour
 
         if (!boxOpen)
         {
-            _player.AddMoney(-800);
+            _player.AddMoney(-cost);
             boxOpen = true;
             openButton.SetActive(false);
             animator.Play("Open");
@@ -109,7 +111,7 @@ public class ShopCrate : MonoBehaviour
 
         gunReady = true;
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(stayOpenTime);
 
         _randomGun.gameObject.SetActive(false);
         gunReady = false;

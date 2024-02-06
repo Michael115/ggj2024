@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4452912412186791560}
   - component: {fileID: 8970684290476382329}
   - component: {fileID: 4345179321626333853}
+  - component: {fileID: 5702143413945872650}
   m_Layer: 0
   m_Name: CostText
   m_TagString: Untagged
@@ -172,6 +173,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 8970684290476382329}
   m_maskType: 0
+--- !u!114 &5702143413945872650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940189775732726584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d851d0f2e9aa85e4386d680d0e0c43ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2167394004180991354
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,6 +552,7 @@ MonoBehaviour:
   gunReady: 0
   denied: 0
   cost: 800
+  stayOpenTime: 10
   openButton: {fileID: 8584041251077913588}
 --- !u!1 &6727175915043591070
 GameObject:
