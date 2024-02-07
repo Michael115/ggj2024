@@ -48,6 +48,9 @@ public class Health : MonoBehaviour
         if (_health <= 0) return false;
         
         _health -= damage;
+        var nvAgent = GetComponent<NavMeshAgent>();
+        nvAgent.velocity = nvAgent.velocity * 0.25f;
+
         if (_health <= 0)
         {
             dead = true;
