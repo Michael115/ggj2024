@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,6 +26,8 @@ public class LaughterMeter : MonoBehaviour
     private int prevClipID = -1;
 
     public AudioClip[] clips;
+
+    public CamShakeEffects shakeCam;
     
     private void Start()
     {
@@ -105,6 +108,8 @@ public class LaughterMeter : MonoBehaviour
         var instanceId = other.GetInstanceID();
         
         nextAttacks.TryGetValue(instanceId, out float nextDamageTime);
+
+        shakeCam.ShakeCamera();
         
         if (Time.time >= nextDamageTime)
         {

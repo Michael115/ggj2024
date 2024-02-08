@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.VFX;
@@ -37,10 +38,16 @@ public class Gun : MonoBehaviour
     public int maxAmmo = 100;
     private int currentAmmo;
 
+    
+    private CinemachineImpulseSource impulseSource;
+    public float camRecoil = 0.1f;
+
+
     void Start()
     {
         _isshootSoundNotNull = shootSound != null;
         _secondsBetweenShots = 60 / rpm;
+        impulseSource = GetComponent<CinemachineImpulseSource>();
     }
 
     private void OnEnable()
@@ -63,6 +70,10 @@ public class Gun : MonoBehaviour
         if (!CanShoot()) return;
         
         _nextPossibleShootTime = Time.time + _secondsBetweenShots;
+
+        //impulseSource.GenerateImpulseWithVelocity(-camRecoil * shootPoint.forward);
+        //impulseSource.GenerateImpulseAtPositionWithVelocity(Camera.main.transform.position, -camRecoil * new Vector3(shootPoint.forward.x, shootPoint.forward.z, 0.0f));
+        impulseSource.GenerateImpulseWithVelocity(-camRecoil * new Vector3(shootPoint.forward.x, shootPoint.forward.z, 0.0f));
 
         if (_isshootSoundNotNull)
         {
