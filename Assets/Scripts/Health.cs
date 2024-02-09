@@ -25,7 +25,7 @@ public class Health : MonoBehaviour
     private AudioSource _audio;
     private CapsuleCollider _collider;
     private LayerMask _mask;
-    private bool dead;
+    public bool dead;
 
 
     private void Awake()

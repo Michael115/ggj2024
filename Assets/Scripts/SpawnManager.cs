@@ -16,20 +16,14 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private float spawnIntervalInSeconds;
     [SerializeField] private float waveIntervalInSeconds;
     [SerializeField] private GameObject enemyPrefab;
-    [SerializeField] private TextMeshProUGUI waveUI;
+    [SerializeField] private GameObject waveUI;
 
     [SerializeField] private float checkSpawnInterval;
     private int _currentWave;
-    private bool _shouldSpawn;
     private int _remainingSpawns;
-    private int _remainingEnemies;
     private float _nextSpawnTime;
     private Transform[] _spawnPoints;
-
-    private void Awake()
-    {
-        Bullet.OnEnemyDeath += OnEnemyDeath;
-    }
+    public Transform playerTransform;
 
     private void Start()
     {
@@ -41,19 +35,22 @@ public class SpawnManager : MonoBehaviour
 
     private void Update()
     {
-        _remainingEnemies = Math.Max(_remainingEnemies, 0);
-        if (_shouldSpawn && Time.time >= _nextSpawnTime)
+        var remainingEnemies = GameObject.FindGameObjectsWithTag("Enemy").ToList();
+        var numRemainingEnemies = 0;
+        foreach (var e in remainingEnemies)
+        {
+            var e_health = e.GetComponent<Health>();
+            if (e_health != null && !e_health.dead)
+            {
+                numRemainingEnemies += 1;
+            }
+        }
+
+        if (_remainingSpawns > 0 && Time.time >= _nextSpawnTime)
         {
             Spawn();
         }
-    }
-
-    private void OnEnemyDeath()
-    {
-        _remainingEnemies -= 1;
-        _remainingEnemies = Math.Max(_remainingEnemies, 0);
-        //counter.text = $"{_remainingEnemies:N0}";
-        if (_remainingEnemies <= 0)
+        else if (numRemainingEnemies == 0 && _remainingSpawns == 0)
         {
             NewWave(waveIntervalInSeconds);
         }
@@ -62,28 +59,31 @@ public class SpawnManager : MonoBehaviour
     private void NewWave(float delayInSeconds)
     {
         _currentWave += 1;
-        _shouldSpawn = true;
         _remainingSpawns = GetSpawnCount(_currentWave);
         _nextSpawnTime = Time.time + delayInSeconds;
         print($"wave {_currentWave} starting in {delayInSeconds} seconds ({_remainingSpawns} enemies)");
 
-        waveUI.text = $"Wave {_currentWave:n0}";
+        waveUI.GetComponent<TextMeshProUGUI>().text = $"Wave {_currentWave:n0}";
+
+        if(_currentWave > 1)
+        {
+            waveUI.GetComponent<UITextPop>().PopText();
+            waveUI.GetComponent<AudioSource>().Play();
+        }
     }
 
     private void Spawn()
     {
         Assert.IsTrue(_remainingSpawns > 0);
 
-        var spawnPoint = _spawnPoints[Random.Range(0, _spawnPoints.Length)];
+        // Try not to spawn directly on top of the player
+        var valid_spawn_points = _spawnPoints.ToList().Where(sp => Vector3.Distance(sp.transform.position, playerTransform.position) > 6.0f).ToList();
+        print("Num Valid Spawn Points..." + valid_spawn_points.Count());
+        var spawnPoint = valid_spawn_points[Random.Range(0, valid_spawn_points.Count())];
+
+
         Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
         _remainingSpawns -= 1;
-        _remainingEnemies += 1;
-        //counter.text = $"{_remainingEnemies:N0}";
-        if (_remainingSpawns == 0)
-        {
-            _shouldSpawn = false;
-            return;
-        }
 
         checkSpawnInterval = Math.Max(spawnIntervalInSeconds - (_currentWave * 0.3f), 0.1f);
         _nextSpawnTime = Time.time + checkSpawnInterval;

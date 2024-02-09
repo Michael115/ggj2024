@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public Texture2D cursorTexture;
 
-    public TextMeshProUGUI uiMoney;
+    public GameObject uiMoney;
 
     public int playerMoney;
 
@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        uiMoney.text = $"Stoicism: {playerMoney}";
+        uiMoney.GetComponent<TextMeshProUGUI>().text = $"Stoicism: {playerMoney}";
         Move();
         Aim();
 
@@ -137,6 +137,7 @@ public class PlayerController : MonoBehaviour
     public void AddMoney(int addMoney)
     {
         playerMoney += addMoney;
+        uiMoney.GetComponent<UITextPop>().PopText();
     }
 
     public Gun GetPlayerGun()
