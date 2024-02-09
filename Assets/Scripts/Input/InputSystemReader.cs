@@ -15,6 +15,8 @@ public class InputSystemReader : Input.IPlayerActions
     
     public event UnityAction ShootSecondaryEvent = delegate { };
     public event UnityAction ShootSecondaryCancelledEvent = delegate { };
+
+    public event UnityAction QuitEvent = delegate { };
     
     private Input _gameInput;
     
@@ -74,5 +76,10 @@ public class InputSystemReader : Input.IPlayerActions
         {
             ShootCancelledEvent.Invoke();
         }
+    }
+
+    public void OnQuit(InputAction.CallbackContext context)
+    {
+        QuitEvent.Invoke();
     }
 }

@@ -54,7 +54,13 @@ public class PlayerController : MonoBehaviour
             _inputReader.ShootCancelledEvent += OnShootStop;
             _inputReader.ShootSecondaryEvent -= OnShootSecondary;
             _inputReader.ShootSecondaryCancelledEvent += OnShootSecondary;
+            _inputReader.QuitEvent += OnQuit;
         }
+    }
+
+    private void OnQuit()
+    {
+        Application.Quit();
     }
 
     void OnDisable()
@@ -69,6 +75,7 @@ public class PlayerController : MonoBehaviour
             _inputReader.ShootCancelledEvent -= OnShootStop;
             _inputReader.ShootSecondaryEvent -= OnShootSecondary;
             _inputReader.ShootSecondaryCancelledEvent -= OnShootSecondaryCancelled;
+            _inputReader.QuitEvent += OnQuit;
         }
     }
 
