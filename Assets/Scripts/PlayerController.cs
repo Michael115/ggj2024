@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private GunUI gunUI;
 
+
     void Start()
     {
         _mousePlaneLayer = LayerMask.GetMask("Mouse");
@@ -104,6 +105,7 @@ public class PlayerController : MonoBehaviour
     {
         _directInputMove = move;
     }
+
 
     void Update()
     {

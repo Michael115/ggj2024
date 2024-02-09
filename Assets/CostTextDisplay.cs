@@ -13,6 +13,10 @@ public class CostTextDisplay : MonoBehaviour
     {
         shopCrate = GetComponentInParent<ShopCrate>();
         costText = GetComponent<TextMeshPro>();
+    }
+
+    private void Update()
+    {
         costText.text = "(" + shopCrate.cost.ToString() + ")";
     }
 }

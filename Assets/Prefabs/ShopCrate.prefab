@@ -811,7 +811,8 @@ MonoBehaviour:
   gunReady: 0
   denied: 0
   cost: 800
-  stayOpenTime: 7.5
+  maxCost: 4000
+  stayOpenTime: 20
   slotMachineSound: {fileID: 8783556129970911084}
   gunParty: {fileID: 1435181570591095140}
   purchaseSound: {fileID: 4628954053300903151}

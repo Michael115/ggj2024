@@ -19,6 +19,7 @@ public class ShopCrate : MonoBehaviour
     public bool denied;
 
     public int cost = 800;
+    public int maxCost = 4000;
 
     private PlayerController _player;
     private InputSystemReader _inputReader;
@@ -81,6 +82,7 @@ public class ShopCrate : MonoBehaviour
         if (!boxOpen)
         {
             _player.AddMoney(-cost);
+            cost = Mathf.Min(cost * 2, maxCost);
             purchaseSound.Play();
             boxOpen = true;
             openButton.SetActive(false);
